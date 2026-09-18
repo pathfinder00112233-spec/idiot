@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IdiotIndex - Raw Material Markup Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .badge-high { background-color: #fee2e2; color: #991b1b; }
+    .badge-extreme { background-color: #7f1d1d; color: #ffffff; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen font-sans">
+
+  <!-- Navigation / Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-black tracking-tight text-gray-900">
+          IDIOT<span class="text-red-600">INDEX</span>
+        </h1>
+        <p class="text-xs text-gray-500 font-medium">Spot the markup. Keep your money.</p>
+      </div>
+      <a href="#about" class="text-sm font-semibold text-gray-600 hover:text-black">Why Raw Costs?</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-3xl mx-auto px-4 pt-10 pb-6 text-center">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+      Stop paying 30× for brand hype.
+    </h2>
+    <p class="mt-2 text-gray-600 text-sm sm:text-base">
+      We calculate the real raw material value inside popular products and show you identical generic alternatives.
+    </p>
+
+    <!-- Search Input -->
+    <div class="mt-6 flex gap-2">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search product (e.g., iPhone cable, Vitamin C, plain tee)..."
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 shadow-sm"
+      />
+    </div>
+
+    <!-- Category Filters -->
+    <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs font-semibold">
+      <button onclick="filterCategory('All')" class="filter-btn px-3 py-1.5 rounded-full bg-black text-white">All</button>
+      <button onclick="filterCategory('Tech')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">📱 Tech</button>
+      <button onclick="filterCategory('Skincare')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">🧴 Skincare</button>
+      <button onclick="filterCategory('Basics')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">👕 Basics</button>
+      <button onclick="filterCategory('Supplements')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">💊 Supplements</button>
+    </div>
+  </section>
+
+  <!-- Product List Grid -->
+  <main class="max-w-5xl mx-auto px-4 py-6">
+    <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Transparency Footer -->
+  <footer id="about" class="bg-white border-t border-gray-200 mt-12 py-8">
+    <div class="max-w-3xl mx-auto px-4 text-center text-xs text-gray-500 space-y-3">
+      <p class="font-bold text-gray-700 uppercase tracking-wider">How We Earn & Why We Recommend</p>
+      <p>
+        If you buy a recommended alternative through our links, we may earn an affiliate commission at zero extra cost to you. We strictly select alternatives with low Idiot Index markups so you get honest value.
+      </p>
+      <p>© 2026 IdiotIndex. Inspired by first-principles thinking.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Product Database (Add as many products as you want here)
+    const products = [
+      {
+        name: "Apple 1m USB-C Charge Cable",
+        category: "Tech",
+        storePrice: 1900,
+        rawCost: 25,
+        ingredients: "1m copper wire + PVC shield + molded head",
+        altName: "Braided 60W Fast-Charging Type-C Cable",
+        altPrice: 149,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "Spigen Tempered Glass Screen Protector",
+        category: "Tech",
+        storePrice: 999,
+        rawCost: 15,
+        ingredients: "Aluminosilicate sheet glass + oleophobic chemical coat",
+        altName: "High-Strength 9H Edge-to-Edge Glass (2-Pack)",
+        altPrice: 99,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "Kiehl's Hyaluronic Acid Serum (30ml)",
+        category: "Skincare",
+        storePrice: 2600,
+        rawCost: 40,
+        ingredients: "Distilled water + 2% sodium hyaluronate powder + glycerin",
+        altName: "USP-Pure 2% Hyaluronic Acid Serum",
+        altPrice: 349,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "L'Oréal Pure Vitamin C 12% Serum",
+        category: "Skincare",
+        storePrice: 999,
+        rawCost: 30,
+        ingredients: "Water solvent + 3.6g L-Ascorbic powder + preservative",
+        altName: "Direct Pure Vitamin C 10% Active Formulation",
+        altPrice: 299,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "Nike Essential Plain Crew T-Shirt",
+        category: "Basics",
+        storePrice: 1695,
+        rawCost: 65,
+        ingredients: "180 grams 100% carded raw cotton knit",
+        altName: "180 GSM Combed Cotton Export Plain Tee",
+        altPrice: 249,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "Car Clean Microfiber Towel (Single)",
+        category: "Basics",
+        storePrice: 299,
+        rawCost: 18,
+        ingredients: "Polyester / Polyamide blend weave (50g)",
+        altName: "Ultra-Thick 400 GSM Microfiber Cloth (Pack of 3)",
+        altPrice: 129,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "Branded Vitamin D3 60k IU (4 Chewables)",
+        category: "Supplements",
+        storePrice: 380,
+        rawCost: 12,
+        ingredients: "Cholecalciferol powder + edible starch base",
+        altName: "USP Generic Cholecalciferol Capsules (4 Caps)",
+        altPrice: 48,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      },
+      {
+        name: "Premium Zinc Chelated 50mg Tablets",
+        category: "Supplements",
+        storePrice: 650,
+        rawCost: 20,
+        ingredients: "Zinc Gluconate bulk mineral powder + cellulose binder",
+        altName: "Generic Elemental Zinc 50mg (60 Tabs)",
+        altPrice: 110,
+        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+      }
+    ];
+
+    let currentCategory = 'All';
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      grid.innerHTML = '';
+
+      const filtered = products.filter(item => {
+        const matchesCategory = (currentCategory === 'All' || item.category === currentCategory);
+        const matchesSearch = item.name.toLowerCase().includes(query) || item.ingredients.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-2 text-center text-gray-400 py-10">No items found. Try searching another product.</div>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const ratio = (item.storePrice / item.rawCost).toFixed(1);
+        const savingsPercent = Math.round(((item.storePrice - item.altPrice) / item.storePrice) * 100);
+
+        const card = document.createElement('div');
+        card.className = "bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:shadow-md transition";
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">${item.category}</span>
+                <h3 class="font-bold text-lg text-gray-900 leading-snug">${item.name}</h3>
+              </div>
+              <span class="px-2.5 py-1 text-xs font-extrabold rounded-lg ${ratio >= 30 ? 'badge-extreme' : 'badge-high'}">
+                ${ratio}× IDIOT INDEX
+              </span>
+            </div>
+
+            <!-- Price Breakdown Grid -->
+            <div class="grid grid-cols-2 gap-2 mt-4 bg-gray-50 p-3 rounded-xl text-center border border-gray-100">
+              <div>
+                <span class="text-xs text-gray-500 block">Retail Price</span>
+                <span class="text-lg font-black text-gray-900 line-through decoration-red-500">₹${item.storePrice}</span>
+              </div>
+              <div>
+                <span class="text-xs text-gray-500 block">Raw Material Value</span>
+                <span class="text-lg font-black text-green-600">₹${item.rawCost}</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-gray-500 mt-2 italic">
+              <strong>Materials:</strong> ${item.ingredients}
+            </p>
+          </div>
+
+          <!-- Honest Alternative Box -->
+          <div class="mt-5 pt-4 border-t border-gray-100">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-bold text-gray-700">Honest Alternative</span>
+              <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Save ${savingsPercent}%</span>
+            </div>
+            <p class="text-sm font-semibold text-gray-800 truncate">${item.altName}</p>
+            <div class="mt-3 flex items-center justify-between">
+              <span class="text-lg font-black text-gray-900">₹${item.altPrice}</span>
+              <a href="${item.altLink}" target="_blank" rel="noopener noreferrer" class="bg-black hover:bg-gray-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition">
+                Buy Alternative →
+              </a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-black', 'text-white');
+        btn.classList.add('bg-gray-200', 'text-gray-700');
+      });
+      event.target.classList.remove('bg-gray-200', 'text-gray-700');
+      event.target.classList.add('bg-black', 'text-white');
+      renderProducts();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', renderProducts);
+    renderProducts();
+  </script>
+</body>
+</html>
