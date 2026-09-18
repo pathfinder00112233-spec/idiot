@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IdiotSkincare - Exposing Beauty Markups</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #fdf2f4;
+    }
+    @keyframes spin-smooth {
+      to { transform: rotate(360deg); }
+    }
+    .spin-loader {
+      animation: spin-smooth 0.75s linear infinite;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .pulse-btn {
+      animation: pulse-subtle 2s infinite ease-in-out;
+    }
+    @keyframes mochi-bob {
+      0%, 100% { transform: translateY(0) scale(1, 1); }
+      50% { transform: translateY(-3px) scale(1.03, 0.97); }
+    }
+    .mochi-cat {
+      animation: mochi-bob 2.4s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fdf2f4; }
+    ::-webkit-scrollbar-thumb { background: #f4b6c2; border-radius: 999px; }
+  </style>
+</head>
+<body class="text-gray-900 min-h-screen flex flex-col justify-between selection:bg-pink-200">
+
+  <!-- Header with Connected Chubby Mochi Kitty -->
+  <header class="w-full bg-white/80 backdrop-blur-md border-b border-pink-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex justify-between items-center">
+      <div class="cursor-pointer flex items-center gap-2.5" onclick="resetToHome()">
+        
+        <!-- Chubby Mochi Kitty Avatar with Connected Tail -->
+        <div class="mochi-cat w-11 h-11 bg-pink-100/90 rounded-2xl flex items-center justify-center p-1 border border-pink-200 shadow-2xs">
+          <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-xs" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 38 98 C 22 96, 12 88, 14 74 C 15 63, 27 62, 29 70 C 31 77, 24 82, 28 88 C 30 92, 34 94, 40 96 Z" 
+                  fill="#ffffff" stroke="#e5989b" stroke-width="2.5" stroke-linejoin="round"/>
+            <polygon points="34,44 42,22 56,36" fill="#ffffff" stroke="#e5989b" stroke-width="2.5" stroke-linejoin="round"/>
+            <polygon points="37,41 43,26 52,36" fill="#ffd1dc"/>
+            <polygon points="76,36 90,22 98,44" fill="#ffffff" stroke="#e5989b" stroke-width="2.5" stroke-linejoin="round"/>
+            <polygon points="80,36 89,26 95,41" fill="#ffd1dc"/>
+            <ellipse cx="66" cy="52" rx="34" ry="26" fill="#ffffff" stroke="#e5989b" stroke-width="2.5"/>
+            <ellipse cx="68" cy="30" rx="26" ry="12" fill="#b8c0e0" stroke="#8d99ae" stroke-width="2.2" transform="rotate(-6 68 30)"/>
+            <circle cx="68" cy="18" r="2.2" fill="#8d99ae"/>
+            <path d="M 80,30 C 80,27 76,26 74,29 C 72,26 68,27 68,30 C 68,34 74,37 74,37 C 74,37 80,34 80,30 Z" fill="#f6bd60"/>
+            <path d="M 28 51 L 38 52" stroke="#e5989b" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 27 57 L 37 56" stroke="#e5989b" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 94 52 L 104 51" stroke="#e5989b" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 95 56 L 105 57" stroke="#e5989b" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="48" cy="51" r="3.2" fill="#2b2d42"/>
+            <circle cx="84" cy="51" r="3.2" fill="#2b2d42"/>
+            <circle cx="49" cy="50" r="1" fill="#ffffff"/>
+            <circle cx="85" cy="50" r="1" fill="#ffffff"/>
+            <ellipse cx="41" cy="57" rx="5" ry="3" fill="#ffb4a2" opacity="0.75"/>
+            <ellipse cx="91" cy="57" rx="5" ry="3" fill="#ffb4a2" opacity="0.75"/>
+            <path d="M 62 55 Q 66 58 70 55" stroke="#2b2d42" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="42" y="70" width="48" height="12" rx="6" fill="#fdf0d5" stroke="#d4a373" stroke-width="2.2"/>
+            <line x1="50" y1="70" x2="50" y2="82" stroke="#d4a373" stroke-width="1.5"/>
+            <line x1="58" y1="70" x2="58" y2="82" stroke="#d4a373" stroke-width="1.5"/>
+            <line x1="66" y1="70" x2="66" y2="82" stroke="#d4a373" stroke-width="1.5"/>
+            <line x1="74" y1="70" x2="74" y2="82" stroke="#d4a373" stroke-width="1.5"/>
+            <line x1="82" y1="70" x2="82" y2="82" stroke="#d4a373" stroke-width="1.5"/>
+            <path d="M 36 82 Q 66 84 96 82 L 92 108 Q 66 112 40 108 Z" fill="#faedcd" stroke="#d4a373" stroke-width="2.2"/>
+            <path d="M 52 86 L 56 90 L 52 94 L 56 98 L 52 102" stroke="#d4a373" stroke-width="1.5" fill="none"/>
+            <path d="M 76 86 L 80 90 L 76 94 L 80 98 L 76 102" stroke="#d4a373" stroke-width="1.5" fill="none"/>
+            <ellipse cx="44" cy="98" rx="5" ry="4" fill="#ffffff" stroke="#d4a373" stroke-width="2"/>
+            <ellipse cx="88" cy="98" rx="5" ry="4" fill="#ffffff" stroke="#d4a373" stroke-width="2"/>
+          </svg>
+        </div>
+
+        <div>
+          <h1 class="text-lg sm:text-xl font-black tracking-tight text-gray-900 leading-none">
+            IDIOT<span class="text-pink-600">SKINCARE</span>
+          </h1>
+          <p class="text-[10px] text-pink-500 font-bold tracking-wider uppercase mt-0.5">Exposing Beauty Markups</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-pink-700 bg-pink-50 border border-pink-200 px-3 py-1.5 rounded-full">
+          22 Audited Benchmarks • 66 Dupes
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Dual-Column Workspace -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    
+    <!-- Top Search Header with Honest Ingredient Research Scope -->
+    <div class="max-w-3xl mx-auto text-center mb-8">
+      <h2 class="text-2xl sm:text-4xl font-black text-gray-900 tracking-tight">
+        Is Your Bathroom Shelf Paying a <span class="text-pink-600">50× Idiot Tax</span>?
+      </h2>
+      <p class="text-xs sm:text-sm text-gray-600 mt-1.5">
+        We calculated the raw ingredient costs behind India's 22 top-selling beauty products using public formulas and wholesale commodity prices. Check if the bottle currently in your routine is ripping you off.
+      </p>
+
+      <!-- Search Input Container -->
+      <div class="mt-5 relative text-left">
+        <div class="relative flex items-center">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search 22 researched best-sellers (e.g. CeraVe, Clinique, The Ordinary, Nivea)..."
+            autocomplete="off"
+            class="w-full px-5 py-4 pl-12 pr-12 text-sm sm:text-base border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-100 shadow-sm bg-white text-gray-800 placeholder-gray-400 transition"
+          />
+          <span class="absolute left-4 text-pink-400 text-lg">🔍</span>
+          
+          <div id="searchSpinner" class="hidden absolute right-12 w-5 h-5 border-2 border-pink-300 border-t-pink-600 rounded-full spin-loader"></div>
+
+          <button 
+            id="clearBtn" 
+            onclick="resetToHome()" 
+            class="hidden absolute right-4 text-gray-400 hover:text-gray-600 text-sm font-bold bg-pink-50 hover:bg-pink-100 rounded-full w-7 h-7 flex items-center justify-center transition">
+            ✕
+          </button>
+        </div>
+
+        <!-- Suggestion Dropdown -->
+        <div 
+          id="suggestionsBox" 
+          class="hidden absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-md border border-pink-200 rounded-2xl shadow-2xl overflow-hidden z-40 max-h-80 overflow-y-auto">
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 mt-3 justify-center text-xs">
+        <span class="text-gray-400 self-center">Browse researched categories:</span>
+        <button onclick="simulateSearch('serum')" class="bg-white hover:bg-pink-100 border border-pink-200 text-gray-700 px-3 py-1 rounded-full font-semibold transition">Serums (6)</button>
+        <button onclick="simulateSearch('cream')" class="bg-white hover:bg-pink-100 border border-pink-200 text-gray-700 px-3 py-1 rounded-full font-semibold transition">Creams (4)</button>
+        <button onclick="simulateSearch('cleanser')" class="bg-white hover:bg-pink-100 border border-pink-200 text-gray-700 px-3 py-1 rounded-full font-semibold transition">Cleansers (4)</button>
+        <button onclick="simulateSearch('toner')" class="bg-white hover:bg-pink-100 border border-pink-200 text-gray-700 px-3 py-1 rounded-full font-semibold transition">Toners (3)</button>
+        <button onclick="simulateSearch('sunscreen')" class="bg-white hover:bg-pink-100 border border-pink-200 text-gray-700 px-3 py-1 rounded-full font-semibold transition">Sunscreen (2)</button>
+        <button onclick="simulateSearch('supplement')" class="bg-white hover:bg-pink-100 border border-pink-200 text-gray-700 px-3 py-1 rounded-full font-semibold transition">Supplements (3)</button>
+      </div>
+    </div>
+
+    <!-- Active Audit Workspace -->
+    <div id="workspace" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Commercial Benchmark -->
+      <div class="lg:col-span-5 bg-white border border-pink-200 rounded-3xl p-6 sm:p-7 shadow-sm">
+        <div class="flex justify-between items-center text-xs font-black">
+          <span id="cardCategory" class="text-pink-600 uppercase tracking-widest">Category</span>
+          <span class="bg-pink-100 text-pink-700 px-2.5 py-1 rounded-md text-[11px]">Researched Benchmark</span>
+        </div>
+
+        <h3 id="cardTitle" class="text-xl sm:text-2xl font-black text-gray-900 mt-3 leading-snug">Product Name</h3>
+        
+        <!-- Shelf Price & Pack Size Container -->
+        <div class="mt-4 p-4 bg-pink-50/50 border border-pink-100 rounded-2xl flex justify-between items-center">
+          <div>
+            <span class="text-xs font-bold text-gray-500 uppercase block">Shelf Retail Price</span>
+            <span id="cardSize" class="text-[11px] font-bold text-pink-600 bg-white px-2 py-0.5 rounded-md border border-pink-100 mt-0.5 inline-block">30 ml</span>
+          </div>
+          <div class="text-right">
+            <span id="cardPrice" class="text-2xl font-black text-gray-900">₹0</span>
+            <span id="cardUnitRate" class="text-[10px] text-gray-500 block font-semibold">₹0 / 100ml</span>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <button 
+          id="revealTriggerBtn"
+          onclick="runAuditCalculation()"
+          class="pulse-btn w-full mt-6 py-4 bg-gray-900 hover:bg-black text-white font-black text-sm sm:text-base rounded-2xl shadow-lg transition tracking-wide flex items-center justify-center gap-2 cursor-pointer">
+          <span>⚡</span> Tap to Calculate Idiot Index Score
+        </button>
+
+        <!-- Processing State -->
+        <div id="calculatingLoader" class="hidden mt-6 p-6 bg-pink-50 border border-pink-200 rounded-2xl flex flex-col items-center justify-center text-center space-y-3">
+          <div class="w-8 h-8 border-3 border-pink-300 border-t-pink-600 rounded-full spin-loader"></div>
+          <div>
+            <p id="calculationLog" class="text-xs font-black text-pink-700 tracking-wide uppercase transition-all duration-200">
+              Cross-referencing active ingredient percentages...
+            </p>
+            <p class="text-[11px] text-gray-500 mt-0.5">Fetching bulk wholesale commodity market pricing</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: BOM Teardown & 3-Alternative Stack -->
+      <div id="resultsColumn" class="lg:col-span-7 space-y-6 hidden transition-all duration-500">
+        
+        <!-- Formulation Cost Teardown -->
+        <div class="bg-red-50/80 border border-red-200 rounded-3xl p-6 sm:p-7 shadow-sm">
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="text-[11px] font-black text-red-700 uppercase tracking-widest block">Audit Result</span>
+              <span class="text-xs text-red-500 font-semibold">First-Principles Markup Score</span>
+            </div>
+            <span id="markupRatio" class="text-3xl font-black text-red-600 bg-white px-4 py-1.5 rounded-2xl shadow-xs border border-red-100">
+              0×
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mt-4 text-center">
+            <div class="bg-white p-3 rounded-2xl border border-red-100">
+              <span class="text-[11px] text-gray-400 block font-semibold">Store Retail Price</span>
+              <span id="strikePrice" class="text-lg font-black text-gray-800 line-through decoration-red-500">₹0</span>
+              <span id="strikeUnitRate" class="text-[10px] text-gray-400 block mt-0.5">₹0 / 100ml</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-red-100">
+              <span class="text-[11px] text-gray-400 block font-semibold">Raw Formulation Cost</span>
+              <span id="rawCostDisplay" class="text-lg font-black text-green-600">₹0</span>
+              <span class="text-[10px] text-green-600 font-bold block mt-0.5">Commodity Ingredient Cost</span>
+            </div>
+          </div>
+
+          <!-- Bill of Materials Breakdown -->
+          <div class="mt-5 pt-4 border-t border-red-100">
+            <span class="text-xs font-bold text-gray-700 block mb-2 uppercase tracking-wide">Estimated Ingredient Cost Breakdown:</span>
+            <div id="bomContainer" class="space-y-2 text-xs"></div>
+          </div>
+        </div>
+
+        <!-- Tier 1: Primary Top-Recommended Dupe Hero Card -->
+        <div class="bg-white border-2 border-emerald-400/40 rounded-3xl p-6 sm:p-7 shadow-md">
+          <div class="flex justify-between items-center">
+            <span class="text-[11px] font-black tracking-wider text-emerald-700 uppercase bg-emerald-50 px-3 py-1 rounded-md">★ #1 Top Pick Alternative</span>
+            <span id="savingsBadge" class="text-xs font-black text-emerald-700 bg-emerald-100 px-3 py-1 rounded-md">Save 0%</span>
+          </div>
+
+          <div class="mt-2 flex flex-wrap items-baseline gap-2">
+            <h4 id="dupeTitle" class="text-lg sm:text-xl font-black text-gray-900">Dupe Name</h4>
+            <span id="dupeSizeBadge" class="text-xs font-black text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">100 ml</span>
+          </div>
+
+          <p id="dupeEdge" class="text-xs text-gray-600 mt-2 leading-relaxed">Formulation equivalence summary.</p>
+
+          <!-- Normalized Unit Price Comparison Table -->
+          <div class="mt-4 overflow-hidden rounded-2xl border border-pink-200/80 bg-pink-50/40">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-pink-100/60 border-b border-pink-200/80 text-[11px] font-black text-gray-700 uppercase">
+                  <th class="py-2 px-3">Metric</th>
+                  <th class="py-2 px-3 text-red-700">Commercial Brand</th>
+                  <th class="py-2 px-3 text-emerald-800">Honest #1 Alternative</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-pink-100 bg-white">
+                <tr>
+                  <td class="py-2 px-3 font-bold text-gray-600">Pack Size</td>
+                  <td id="tblBrandSize" class="py-2.5 px-3 text-gray-800 font-semibold">50 ml</td>
+                  <td id="tblDupeSize" class="py-2.5 px-3 text-emerald-700 font-black">200 g</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 font-bold text-gray-600">Shelf Price</td>
+                  <td id="tblBrandPrice" class="py-2.5 px-3 text-gray-800 font-semibold">₹3,550</td>
+                  <td id="tblDupePrice" class="py-2.5 px-3 text-emerald-700 font-black">₹312</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 font-bold text-gray-600">Price / 100g or ml</td>
+                  <td id="tblBrandUnitRate" class="py-2.5 px-3 text-red-600 font-black">₹7,100 / 100ml</td>
+                  <td id="tblDupeUnitRate" class="py-2.5 px-3 text-emerald-700 font-black">₹156 / 100g</td>
+                </tr>
+                <tr class="bg-emerald-50/50">
+                  <td class="py-2.5 px-3 font-bold text-gray-900">Effective Difference</td>
+                  <td class="py-2.5 px-3 text-gray-500 font-semibold">Brand Taxed</td>
+                  <td id="tblEffectiveDiff" class="py-2.5 px-3 text-emerald-800 font-black text-xs sm:text-sm">~45× Cheaper per gram</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bottom Purchase Action -->
+          <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-400 block font-bold uppercase">Fair Price</span>
+              <span id="dupePrice" class="text-2xl font-black text-gray-900">₹0</span>
+              <span id="dupeUnitRateDisplay" class="text-[10px] text-emerald-600 font-bold block">₹0 / 100ml</span>
+            </div>
+            <a 
+              id="buyDupeBtn" 
+              href="#" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow-md transition active:scale-95 flex items-center gap-1.5">
+              Get Alternative on Amazon →
+            </a>
+          </div>
+        </div>
+
+        <!-- 2 Secondary Alternatives Container -->
+        <div class="bg-white/95 border border-pink-200 rounded-3xl p-5 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-black uppercase text-gray-700 tracking-wider">Other Curated Alternatives</span>
+            <span class="text-[10px] text-pink-600 font-bold uppercase">2 Additional Options</span>
+          </div>
+
+          <div id="secondaryDupesContainer" class="space-y-3">
+            <!-- Rendered Dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Empty State Hero -->
+    <div id="emptyHero" class="text-center py-16">
+      <div class="inline-block p-6 bg-white border border-pink-200 rounded-3xl shadow-sm max-w-md">
+        <p class="text-sm font-semibold text-gray-700">Search above or click any category pill</p>
+        <p class="text-xs text-gray-500 mt-1">Select any item to view its estimated ingredient cost breakdown and 3 verified dupes.</p>
+      </div>
+    </div>
+
+    <!-- Community Teardown Requests -->
+    <section id="communitySection" class="max-w-xl mx-auto w-full mt-10 mb-4">
+      <div class="bg-white/90 border border-pink-200/80 rounded-2xl p-4 shadow-xs">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-black text-gray-800 flex items-center gap-1.5">
+            <span>🗳️</span> Request Unlisted Product
+          </span>
+          <span class="text-[10px] text-pink-500 font-bold uppercase tracking-wider">Community Voted Queue</span>
+        </div>
+
+        <form onsubmit="submitRequest(event)" class="mt-2.5 flex flex-col sm:flex-row gap-2">
+          <input 
+            id="requestInput"
+            type="text" 
+            placeholder="Type brand name (e.g., Plum, Dot & Key, Dr. Sheth's)..."
+            class="flex-1 px-3 py-2 text-xs border border-pink-200 rounded-xl focus:outline-none focus:border-pink-500 bg-pink-50/30 text-gray-800 placeholder-gray-400"
+          />
+          <button 
+            type="submit" 
+            class="bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer active:scale-95">
+            Vote / Request
+          </button>
+        </form>
+
+        <p id="requestError" class="text-[10px] text-red-500 mt-1 hidden"></p>
+
+        <div class="mt-3 pt-3 border-t border-pink-100/70">
+          <span class="text-[10px] text-gray-400 font-bold uppercase block mb-1.5">Queued for Next Ingredient Breakdown:</span>
+          <div id="requestList" class="flex flex-wrap gap-1.5"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Clean Legal Footer with Tap-to-Expand Modals -->
+  <footer class="w-full border-t border-pink-100/60 py-4 px-4 mt-auto text-center">
+    <div class="max-w-xl mx-auto flex items-center justify-center gap-3 text-[10px] text-gray-400 font-semibold">
+      <span>IdiotSkincare © 2026</span>
+      <span>•</span>
+      <button type="button" onclick="toggleLegalModal('estimatesModal')" class="hover:text-pink-600 underline cursor-pointer">
+        Legal & Methodology
+      </button>
+      <span>•</span>
+      <button type="button" onclick="toggleLegalModal('affiliateModal')" class="hover:text-pink-600 underline cursor-pointer">
+        Affiliate Disclosure
+      </button>
+    </div>
+
+    <!-- Complete Legal Shield Modal -->
+    <div id="estimatesModal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl p-5 max-w-md w-full text-left shadow-xl border border-pink-100 max-h-[85vh] overflow-y-auto">
+        <h3 class="text-xs font-black uppercase tracking-wider text-gray-800">Legal Disclaimer & Methodology</h3>
+        
+        <div class="text-[11px] text-gray-600 mt-3 space-y-2.5 leading-relaxed">
+          <p>
+            <strong>1. Educational & Satirical Commentary:</strong> "IdiotSkincare", "Idiot Tax", and the "Idiot Index" are satirical consumer awareness metrics designed to illustrate pricing variances across common cosmetic formulations. They represent protected opinion and commentary on commodity margins, not statements of corporate wrongdoing or fraud.
+          </p>
+          <p>
+            <strong>2. Ingredient Cost Estimates:</strong> Formulation cost breakdowns and raw active percentages are educational approximations derived from publicly available product labels, patent documents, peer-reviewed cosmetic chemistry databases, and bulk commodity market spot prices. They exclude overhead expenses such as clinical trials, custom molding, multi-tier distribution commissions, and advertising budgets.
+          </p>
+          <p>
+            <strong>3. Trademark & Brand Ownership:</strong> All third-party trademarks, service marks, trade names, and product packaging referenced remain the exclusive property of their respective owners. Use of these names is strictly for comparative product identification under the doctrine of Nominative Fair Use. IdiotSkincare has no direct corporate affiliation with, nor endorsement from, the benchmark brand owners.
+          </p>
+          <p>
+            <strong>4. No Dermatological Advice:</strong> Information provided on this website is for informational and educational cost-comparison purposes only and must not be construed as dermatological, medical, or clinical advice. Consult a certified medical practitioner for individual skin conditions.
+          </p>
+        </div>
+
+        <button type="button" onclick="toggleLegalModal('estimatesModal')" class="mt-4 w-full py-2 bg-pink-50 text-pink-700 font-bold text-xs rounded-xl hover:bg-pink-100 transition">
+          Understood & Accept
+        </button>
+      </div>
+    </div>
+
+    <!-- Affiliate Disclosure Modal -->
+    <div id="affiliateModal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl p-5 max-w-sm w-full text-left shadow-xl border border-pink-100">
+        <h3 class="text-xs font-black uppercase tracking-wider text-gray-800">Affiliate Disclosure</h3>
+        <p class="text-[11px] text-gray-500 mt-2 leading-relaxed">
+          As an Amazon Associate, we earn from qualifying purchases. If you click on an honest alternative recommendation and complete a purchase, we may receive a referral commission from Amazon at zero additional cost to you.
+        </p>
+        <button type="button" onclick="toggleLegalModal('affiliateModal')" class="mt-4 w-full py-2 bg-pink-50 text-pink-700 font-bold text-xs rounded-xl hover:bg-pink-100 transition">
+          Got It
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Live Amazon Associate Tracking Tag
+    const AFFILIATE_TAG = "idiotskincare-21";
+
+    // All 22 Researched Benchmarks with 3 Curated Alternatives Each
+    const database = [
+      // Serums (1-6)
+      {
+        id: "salicylic",
+        tags: ["serum", "serums", "salicylic", "salicylic acid", "bha", "acne", "pores", "blackheads"],
+        category: "Face Serums",
+        brandName: "The Derma Co 2% Salicylic Acid Face Serum",
+        brandSize: "30 ml",
+        brandPrice: 499,
+        brandUnitRate: "₹1,663 / 100ml",
+        rawCost: 20,
+        bom: [
+          { item: "Pure 2% USP Salicylic Acid Powder", cost: "₹7" },
+          { item: "Solvent (Propylene Glycol & Glycerin)", cost: "₹5" },
+          { item: "Purified Water & Stabilizer", cost: "₹2" },
+          { item: "30ml Amber Glass Dropper Bottle", cost: "₹6" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Pharmacy Staple",
+            name: "Sebogel (Salicylic 2% + Nicotinamide 6%)",
+            size: "30 g",
+            price: 240,
+            unitRate: "₹800 / 100g",
+            query: "sebogel+salicylic+acid+gel",
+            effectiveDiff: "~2.1× Cheaper per gram",
+            edge: "Formulated by pharmaceutical labs with 6% Niacinamide added. Zero cosmetic fragrance."
+          },
+          {
+            tier: "Clean Clinical Match",
+            name: "Minimalist 2% Salicylic Acid Face Serum",
+            size: "30 ml",
+            price: 549,
+            unitRate: "₹1,830 / 100ml",
+            query: "minimalist+salicylic+acid+2+serum",
+            effectiveDiff: "Aloe Base (No Stinging)",
+            edge: "Formulated in soothing aloe juice to soothe irritation while purging blackheads."
+          },
+          {
+            tier: "Deep Cleansing Option",
+            name: "Cipla Saslic DS 2% Salicylic Foaming Cleanser",
+            size: "60 ml",
+            price: 459,
+            unitRate: "₹765 / 100ml",
+            query: "saslic+ds+foaming+face+wash",
+            effectiveDiff: "~2.2× Cheaper per ml",
+            edge: "Gold-standard pharmaceutical foaming salicylic cleanser prescribed by dermatologists."
+          }
+        ]
+      },
+      {
+        id: "hyaluronic",
+        tags: ["serum", "serums", "hyaluronic", "hyaluronic acid", "hydration", "dry skin", "loreal"],
+        category: "Face Serums",
+        brandName: "L'Oréal Revitalift 1.5% Hyaluronic Acid Serum",
+        brandSize: "30 ml",
+        brandPrice: 999,
+        brandUnitRate: "₹3,330 / 100ml",
+        rawCost: 35,
+        bom: [
+          { item: "Pure Sodium Hyaluronate Powder (Multi-weight)", cost: "₹18" },
+          { item: "Glycerin & Dimethyl Isosorbide", cost: "₹7" },
+          { item: "Demineralized Water Carrier (90%)", cost: "₹2" },
+          { item: "Glass Dropper Bottle & Cap", cost: "₹8" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Multi-Weight Hydrator",
+            name: "Minimalist 2% Hyaluronic Acid + PGA",
+            size: "30 ml",
+            price: 599,
+            unitRate: "₹1,996 / 100ml",
+            query: "minimalist+hyaluronic+acid+serum",
+            effectiveDiff: "~1.7× Cheaper per ml",
+            edge: "Includes Polyglutamic Acid (PGA) which locks in 4× more hydration than pure hyaluronic acid."
+          },
+          {
+            tier: "Deep Barrier Value",
+            name: "The Derma Co 2% Hyaluronic Acid Hydrating Serum",
+            size: "30 ml",
+            price: 449,
+            unitRate: "₹1,496 / 100ml",
+            query: "derma+co+2+hyaluronic+acid+serum",
+            effectiveDiff: "~2.2× Cheaper per ml",
+            edge: "Infused with zinc and multi-molecular weight HA for immediate plumping."
+          },
+          {
+            tier: "Korean Glass Skin Match",
+            name: "Dot & Key Water Drench Hyaluronic Serum",
+            size: "30 ml",
+            price: 535,
+            unitRate: "₹1,783 / 100ml",
+            query: "dot+and+key+hyaluronic+acid+serum",
+            effectiveDiff: "~1.9× Cheaper per ml",
+            edge: "Lightweight, non-sticky water essence with added Vitamin C and Japanese rice extract."
+          }
+        ]
+      },
+      {
+        id: "vitaminc",
+        tags: ["serum", "serums", "vitamin c", "vit c", "glow", "dark spots", "garnier", "brightening"],
+        category: "Face Serums",
+        brandName: "Garnier Bright Complete 30x Vitamin C Booster",
+        brandSize: "30 ml",
+        brandPrice: 699,
+        brandUnitRate: "₹2,330 / 100ml",
+        rawCost: 30,
+        bom: [
+          { item: "Ethyl Ascorbic Acid Active Powder", cost: "₹14" },
+          { item: "Dipropylene Glycol Carrier Solvent", cost: "₹6" },
+          { item: "Synthetic Perfume & Stabilizers", cost: "₹3" },
+          { item: "Glass Pipette Bottle", cost: "₹7" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Pure L-Ascorbic",
+            name: "Foxtale 15% Pure L-Ascorbic Acid Serum",
+            size: "30 ml",
+            price: 545,
+            unitRate: "₹1,816 / 100ml",
+            query: "foxtale+vitamin+c+serum+15",
+            effectiveDiff: "~1.3× Cheaper (Pure active)",
+            edge: "Uses pure active L-Ascorbic Acid (the medical gold standard) rather than a weak derivative."
+          },
+          {
+            tier: "Clinical Centella Dupe",
+            name: "Minimalist 10% Vitamin C + Ferulic Acid",
+            size: "30 ml",
+            price: 664,
+            unitRate: "₹2,213 / 100ml",
+            query: "minimalist+10+vitamin+c+face+serum",
+            effectiveDiff: "Ferulic Acid Stabilized",
+            edge: "Contains Ferulic Acid to prevent oxidation, bottled in dark opaque glass."
+          },
+          {
+            tier: "Beginner Friendly Value",
+            name: "Plum 15% Mandarin Vitamin C Serum",
+            size: "20 ml",
+            price: 495,
+            unitRate: "₹2,475 / 100ml",
+            query: "plum+15+vitamin+c+face+serum",
+            effectiveDiff: "Includes Pure Fruit Enzymes",
+            edge: "Enriched with Japanese Mandarin and kakadu plum to fade hyperpigmentation."
+          }
+        ]
+      },
+      {
+        id: "niacinamide",
+        tags: ["serum", "serums", "niacinamide", "pores", "oil", "ordinary", "blemish", "vitamin b3"],
+        category: "Face Serums",
+        brandName: "The Ordinary Niacinamide 10% + Zinc 1%",
+        brandSize: "30 ml",
+        brandPrice: 650,
+        brandUnitRate: "₹2,166 / 100ml",
+        rawCost: 25,
+        bom: [
+          { item: "Pure Niacinamide Bulk Active Powder (10g)", cost: "₹11" },
+          { item: "Zinc PCA Powder (1g)", cost: "₹4" },
+          { item: "Water Carrier + Tamarind Gum", cost: "₹3" },
+          { item: "Standard 30ml Dropper Bottle", cost: "₹7" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Identical Formulation",
+            name: "Minimalist 10% Niacinamide + Zinc PCA",
+            size: "30 ml",
+            price: 569,
+            unitRate: "₹1,896 / 100ml",
+            query: "minimalist+niacinamide+10+serum",
+            effectiveDiff: "~1.2× Cheaper (Aloe Base)",
+            edge: "Formulated in soothing aloe juice with EUK-134 antioxidant to prevent skin flushing."
+          },
+          {
+            tier: "Centella Soothing Value",
+            name: "Deconstruct 10% Niacinamide + 0.3% Alpha Arbutin",
+            size: "30 ml",
+            price: 549,
+            unitRate: "₹1,830 / 100ml",
+            query: "deconstruct+clearing+serum+niacinamide",
+            effectiveDiff: "Dual Active Pigment Attack",
+            edge: "Combines 10% Niacinamide with Alpha Arbutin to clear lingering post-acne dark marks."
+          },
+          {
+            tier: "Pharmacy Pore Gel",
+            name: "Papulex Oil-Free Gel (4% Nicotinamide)",
+            size: "40 ml",
+            price: 650,
+            unitRate: "₹1,625 / 100ml",
+            query: "papulex+oil+free+gel+nicotinamide",
+            effectiveDiff: "~1.3× Cheaper per ml",
+            edge: "Hospital-grade zinc and nicotinamide gel designed specifically for acne-prone oily skin."
+          }
+        ]
+      },
+      {
+        id: "retinol",
+        tags: ["serum", "serums", "retinol", "anti aging", "wrinkles", "olay", "night serum", "fine lines"],
+        category: "Face Serums",
+        brandName: "Olay Regenerist Retinol 24 Night Serum",
+        brandSize: "30 ml",
+        brandPrice: 1799,
+        brandUnitRate: "₹5,996 / 100ml",
+        rawCost: 45,
+        bom: [
+          { item: "Retinoid / Retinyl Propionate Complex", cost: "₹22" },
+          { item: "Dimethicone Silicone Slip Carrier", cost: "₹11" },
+          { item: "Preservatives & Synthetic Fragrance", cost: "₹4" },
+          { item: "Opaque Pump Bottle Dispensary", cost: "₹8" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Squalane Infused",
+            name: "Minimalist 0.3% Pure Retinol in Squalane",
+            size: "30 ml",
+            price: 645,
+            unitRate: "₹2,150 / 100ml",
+            query: "minimalist+retinol+0.3+in+squalane",
+            effectiveDiff: "~2.8× Cheaper per ml",
+            edge: "Pure stabilized retinol dissolved in plant squalane oil for deep repair with zero peeling."
+          },
+          {
+            tier: "Gentle Granactive Dupe",
+            name: "The Ordinary Granactive Retinoid 2% Emulsion",
+            size: "30 ml",
+            price: 850,
+            unitRate: "₹2,833 / 100ml",
+            query: "the+ordinary+granactive+retinoid+2+emulsion",
+            effectiveDiff: "~2.1× Cheaper per ml",
+            edge: "Next-generation retinoid complex delivering anti-aging results without irritation."
+          },
+          {
+            tier: "Bakuchiol Retinol Blend",
+            name: "Plum 1% Retinol Face Serum with Bakuchiol",
+            size: "30 ml",
+            price: 675,
+            unitRate: "₹2,250 / 100ml",
+            query: "plum+1+retinol+face+serum",
+            effectiveDiff: "~2.7× Cheaper per ml",
+            edge: "Gentle plant-derived bakuchiol booster combined with retinol for sensitive skin."
+          }
+        ]
+      },
+      {
+        id: "snail",
+        tags: ["serum", "serums", "snail", "snail mucin", "cosrx", "essence", "glass skin", "peptides"],
+        category: "Face Serums",
+        brandName: "COSRX Advanced Snail 96 Mucin Power Essence",
+        brandSize: "100 ml",
+        brandPrice: 1450,
+        brandUnitRate: "₹1,450 / 100ml",
+        rawCost: 60,
+        bom: [
+          { item: "Filtered Snail Secretion Filtrate Powder", cost: "₹38" },
+          { item: "Sodium Hyaluronate & Panthenol", cost: "₹8" },
+          { item: "Sodium Polyacrylate Thickener Base", cost: "₹4" },
+          { item: "100ml PET Pump Bottle", cost: "₹10" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Bio-Peptide Hydrator",
+            name: "Dot & Key Bio-Peptide Hydrating Essence",
+            size: "100 ml",
+            price: 695,
+            unitRate: "₹695 / 100ml",
+            query: "peptide+hydrating+essence+serum",
+            effectiveDiff: "~2.1× Cheaper per ml",
+            edge: "Delivers identical dewy bounce using fermented bio-peptides and soothing panthenol."
+          },
+          {
+            tier: "Clinical Polyglutamic Acid",
+            name: "Minimalist Multi-Peptide 7% Face Serum",
+            size: "30 ml",
+            price: 664,
+            unitRate: "₹2,213 / 100ml",
+            query: "minimalist+multi+peptide+serum",
+            effectiveDiff: "Pure Peptides & Matrixyl 3000",
+            edge: "Contains clinical Matrixyl 3000 and Copper Peptides to rebuild collagen architecture."
+          },
+          {
+            tier: "Korean Cica Water Essence",
+            name: "Skin1004 Madagascar Centella Ampoule",
+            size: "55 ml",
+            price: 999,
+            unitRate: "₹1,816 / 100ml",
+            query: "skin1004+madagascar+centella+ampoule",
+            effectiveDiff: "100% Pure Centella Extract",
+            edge: "Calms inflammation and reinforces broken skin barriers with zero stickiness."
+          }
+        ]
+      },
+
+      // Creams & Moisturizers (7-10)
+      {
+        id: "gelcream",
+        tags: ["cream", "creams", "moisturizer", "moisturizers", "gel", "clinique", "water surge", "oily skin cream", "moisture surge"],
+        category: "Moisturizers",
+        brandName: "Clinique Moisture Surge 100H Hydrator",
+        brandSize: "50 ml",
+        brandPrice: 2700,
+        brandUnitRate: "₹5,400 / 100ml",
+        rawCost: 55,
+        bom: [
+          { item: "Silicone Dimethicone Gel Emulsion", cost: "₹26" },
+          { item: "Glycerin & Trehalose Humectants", cost: "₹9" },
+          { item: "Purified Water (85%)", cost: "₹2" },
+          { item: "Molded Acrylic Jar & Lid", cost: "₹18" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Unbeatable Value",
+            name: "Pond's Super Light Gel (Oil-Free)",
+            size: "200 g",
+            price: 312,
+            unitRate: "₹156 / 100g",
+            query: "ponds+super+light+gel+oil+free",
+            effectiveDiff: "~34.6× Cheaper per unit",
+            edge: "Virtually identical fast-absorbing hyaluronic water-gel. ₹156 per 100g vs ₹5,400 per 100ml."
+          },
+          {
+            tier: "Direct Texture Dupe",
+            name: "Neutrogena Hydro Boost Hyaluronic Water Gel",
+            size: "50 g",
+            price: 850,
+            unitRate: "₹1,700 / 100g",
+            query: "neutrogena+hydro+boost+water+gel",
+            effectiveDiff: "~3.2× Cheaper per gram",
+            edge: "The benchmark texture twin to Clinique, using identical dimethicone cross-polymers."
+          },
+          {
+            tier: "Fragrance-Free Barrier Pick",
+            name: "Minimalist 10% Vitamin B5 Moisturizer",
+            size: "50 g",
+            price: 349,
+            unitRate: "₹698 / 100g",
+            query: "minimalist+vitamin+b5+moisturizer",
+            effectiveDiff: "~7.7× Cheaper per gram",
+            edge: "Oil-free clinical gel enriched with 10% Panthenol for oil control with zero perfume."
+          }
+        ]
+      },
+      {
+        id: "ceramide",
+        tags: ["cream", "creams", "moisturizer", "moisturizers", "ceramide", "cerave", "barrier cream", "dry skin"],
+        category: "Moisturizers",
+        brandName: "CeraVe Moisturizing Barrier Cream",
+        brandSize: "50 ml",
+        brandPrice: 1200,
+        brandUnitRate: "₹2,400 / 100ml",
+        rawCost: 50,
+        bom: [
+          { item: "Ceramide NP, AP, EOP + Phytosphingosine", cost: "₹22" },
+          { item: "White Petrolatum & Mineral Base", cost: "₹11" },
+          { item: "Emulsifying Waxes & Cetearyl Alcohol", cost: "₹7" },
+          { item: "Large Tub Container", cost: "₹10" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Medical Grade Staple",
+            name: "Atomist Skin Barrier Repair Cream",
+            size: "100 g",
+            price: 380,
+            unitRate: "₹380 / 100g",
+            query: "atomist+skin+barrier+repair+cream",
+            effectiveDiff: "~6.3× Cheaper per unit",
+            edge: "Formulated with medical-grade ceramide complexes for barrier repair at ₹380 per 100g."
+          },
+          {
+            tier: "Clean Bisabolol Formulation",
+            name: "Minimalist 0.3% Ceramide Barrier Repair Cream",
+            size: "50 g",
+            price: 569,
+            unitRate: "₹1,138 / 100g",
+            query: "minimalist+ceramide+cream",
+            effectiveDiff: "~2.1× Cheaper per gram",
+            edge: "Calibrated 3:1:1 physiological ceramide-to-cholesterol ratio with soothing bisabolol."
+          },
+          {
+            tier: "Pharmacy Dry-Skin Favorite",
+            name: "Biosilk Moisturising Cream (Shea & Ceramides)",
+            size: "150 g",
+            price: 490,
+            unitRate: "₹326 / 100g",
+            query: "biosilk+moisturising+cream",
+            effectiveDiff: "~7.4× Cheaper per gram",
+            edge: "High-volume dermatologist barrier cream formulated for sensitive, eczema-prone skin."
+          }
+        ]
+      },
+      {
+        id: "coldcream",
+        tags: ["cream", "creams", "moisturizer", "moisturizers", "cold cream", "nivea", "body cream", "heavy cream"],
+        category: "Moisturizers",
+        brandName: "Nivea Classic Blue Tin Crème",
+        brandSize: "100 ml",
+        brandPrice: 350,
+        brandUnitRate: "₹350 / 100ml",
+        rawCost: 20,
+        bom: [
+          { item: "Refined Mineral Oil & Microcrystalline Wax", cost: "₹9" },
+          { item: "Glycerin & Paraffin", cost: "₹4" },
+          { item: "Synthetic Floral Fragrance Oils", cost: "₹3" },
+          { item: "Classic Stamped Aluminum Tin", cost: "₹4" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: 100% Medical Occlusive",
+            name: "Pure USP White Soft Petroleum Jelly",
+            size: "200 g",
+            price: 140,
+            unitRate: "₹70 / 100g",
+            query: "pure+petroleum+jelly+usp",
+            effectiveDiff: "~5.0× Cheaper per unit",
+            edge: "100% medical-grade occlusive moisture barrier with zero perfumes or sensitizing alcohols."
+          },
+          {
+            tier: "Clinical Dry Skin Healer",
+            name: "Emolene Dry Skin Cream",
+            size: "100 g",
+            price: 350,
+            unitRate: "₹350 / 100g",
+            query: "emolene+cream+100g",
+            effectiveDiff: "Pharma Propylene Glycol Base",
+            edge: "Famous hospital cream that delivers intense water retention without heavy mineral grease."
+          },
+          {
+            tier: "Herbal Healing Salve",
+            name: "Boroline Antiseptic Ayurvedic Cream",
+            size: "80 g (Pack of 2)",
+            price: 160,
+            unitRate: "₹200 / 100g",
+            query: "boroline+antiseptic+ayurvedic+cream",
+            effectiveDiff: "~1.75× Cheaper per gram",
+            edge: "Boric acid and zinc oxide base that repairs cracked winter lips and skin overnight."
+          }
+        ]
+      },
+      {
+        id: "eyecream",
+        tags: ["cream", "creams", "moisturizer", "moisturizers", "eye cream", "dark circles", "kiehls", "under eye"],
+        category: "Moisturizers",
+        brandName: "Kiehl's Creamy Avocado Eye Treatment",
+        brandSize: "14 ml",
+        brandPrice: 3200,
+        brandUnitRate: "₹22,857 / 100ml",
+        rawCost: 40,
+        bom: [
+          { item: "Refined Avocado & Shea Fatty Esters", cost: "₹16" },
+          { item: "Water & Wax Emulsifiers", cost: "₹6" },
+          { item: "Preservatives & Stabilizers", cost: "₹3" },
+          { item: "15ml Luxury Thick Glass Pot", cost: "₹15" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Active Caffeine Drainer",
+            name: "The Derma Co 5% Caffeine Under Eye Serum",
+            size: "15 ml",
+            price: 399,
+            unitRate: "₹2,660 / 100ml",
+            query: "derma+co+5+caffeine+under+eye+serum",
+            effectiveDiff: "~8.6× Cheaper per ml",
+            edge: "Contains 5% bioactive caffeine to drain puffiness and dark circles instead of cosmetic butter."
+          },
+          {
+            tier: "Antioxidant EGCG Option",
+            name: "The Ordinary Caffeine 5% + EGCG Solution",
+            size: "30 ml",
+            price: 650,
+            unitRate: "₹2,166 / 100ml",
+            query: "the+ordinary+caffeine+solution+5+egcg",
+            effectiveDiff: "~10.5× Cheaper per ml",
+            edge: "Green tea leaf polyphenols paired with pure caffeine in a giant 30ml eye dropper."
+          },
+          {
+            tier: "Roll-on Cooling Pick",
+            name: "Minimalist Eye Cream with Retinal & Peptides",
+            size: "14 g",
+            price: 499,
+            unitRate: "₹3,564 / 100g",
+            query: "minimalist+retinal+eye+cream",
+            effectiveDiff: "~6.4× Cheaper per gram",
+            edge: "Clinical 0.05% Retinaldehyde booster to reduce fine lines and firm delicate eye tissue."
+          }
+        ]
+      },
+
+      // Cleansers (11-14)
+      {
+        id: "gentlewash",
+        tags: ["cleanser", "cleansers", "wash", "face wash", "gentle cleanser", "cetaphil", "sensitive skin"],
+        category: "Face Cleansers",
+        brandName: "Cetaphil Gentle Skin Cleanser",
+        brandSize: "125 ml",
+        brandPrice: 550,
+        brandUnitRate: "₹440 / 100ml",
+        rawCost: 25,
+        bom: [
+          { item: "Cetyl & Stearyl Fatty Alcohols", cost: "₹10" },
+          { item: "Propylene Glycol & Surfactant Trace", cost: "₹5" },
+          { item: "Demineralized Water (92%)", cost: "₹2" },
+          { item: "Plastic Bottle & Dispenser Cap", cost: "₹8" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Exact Formulation Twin",
+            name: "CleanseMe Gentle Skin Cleanser",
+            size: "125 ml",
+            price: 280,
+            unitRate: "₹224 / 100ml",
+            query: "cleanseme+gentle+skin+cleanser",
+            effectiveDiff: "~2.0× Cheaper per ml",
+            edge: "Identical soap-free, non-comedogenic gentle emulsion formula certified by dermatologists."
+          },
+          {
+            tier: "Pharmacy Colloidal Oatmeal",
+            name: "Episoft Cleansing Lotion (For Sensitive Skin)",
+            size: "125 ml",
+            price: 420,
+            unitRate: "₹336 / 100ml",
+            query: "episoft+cleansing+lotion",
+            effectiveDiff: "~1.3× Cheaper per ml",
+            edge: "pH 5.5 balanced lotion recommended in hospitals for irritated or post-procedure skin."
+          },
+          {
+            tier: "Oat & Ceramide Wash",
+            name: "Minimalist 6% Oat Gentle Cleanser",
+            size: "100 ml",
+            price: 299,
+            unitRate: "₹299 / 100ml",
+            query: "minimalist+oat+gentle+cleanser",
+            effectiveDiff: "~1.5× Cheaper per ml",
+            edge: "Sulfate-free cleanser formulated with real colloidal oat extract to protect lipid barriers."
+          }
+        ]
+      },
+      {
+        id: "acnewash",
+        tags: ["cleanser", "cleansers", "wash", "face wash", "acne wash", "neutrogena", "salicylic wash"],
+        category: "Face Cleansers",
+        brandName: "Neutrogena Oil-Free Acne Wash",
+        brandSize: "175 ml",
+        brandPrice: 750,
+        brandUnitRate: "₹428 / 100ml",
+        rawCost: 30,
+        bom: [
+          { item: "Active 2% Salicylic Acid Powder", cost: "₹8" },
+          { item: "Sodium C14-16 Olefin Sulfonate Lather Base", cost: "₹9" },
+          { item: "Synthetic Color Dyes & Fragrance", cost: "₹4" },
+          { item: "Pump Container", cost: "₹9" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Pure Pharma Grade",
+            name: "Cipla Saslic DS 2% Salicylic Acid Foaming Wash",
+            size: "60 ml",
+            price: 459,
+            unitRate: "₹765 / 100ml",
+            query: "saslic+ds+foaming+face+wash",
+            effectiveDiff: "Pure Pharma Grade (Zero Dyes)",
+            edge: "Clinical foaming wash produced by Cipla with zero pore-clogging artificial color dyes."
+          },
+          {
+            tier: "Budget Pharmacy Staple",
+            name: "Ahaglow S Foaming Face Wash (1% Salicylic)",
+            size: "100 ml",
+            price: 485,
+            unitRate: "₹485 / 100ml",
+            query: "ahaglow+s+foaming+face+wash",
+            effectiveDiff: "Includes Glycolic Acid",
+            edge: "Dual chemical exfoliation with 1% Salicylic and 2% Glycolic acid for stubborn sebum."
+          },
+          {
+            tier: "Clean LHA Formula",
+            name: "Minimalist 2% Salicylic Acid Face Cleanser",
+            size: "100 ml",
+            price: 299,
+            unitRate: "₹299 / 100ml",
+            query: "minimalist+2+salicylic+acid+cleanser",
+            effectiveDiff: "~1.4× Cheaper per ml",
+            edge: "Enriched with antibacterial Zinc PCA and gentle Capryloyl Salicylic Acid (LHA)."
+          }
+        ]
+      },
+      {
+        id: "balm",
+        tags: ["cleanser", "cleansers", "cleansing balm", "makeup remover", "clinique balm", "oil cleanser"],
+        category: "Face Cleansers",
+        brandName: "Clinique Take The Day Off Cleansing Balm",
+        brandSize: "125 ml",
+        brandPrice: 2800,
+        brandUnitRate: "₹2,240 / 100ml",
+        rawCost: 45,
+        bom: [
+          { item: "Ethylhexyl Palmitate Ester Base", cost: "₹19" },
+          { item: "PEG-20 Glyceryl Triisostearate Rinsing Agent", cost: "₹10" },
+          { item: "Polyethylene Solidifying Waxes", cost: "₹4" },
+          { item: "Wide-mouth 125ml Jar", cost: "₹12" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Silky Melt Cleanser",
+            name: "Plum E-Luminence Cleansing Balm",
+            size: "90 g",
+            price: 450,
+            unitRate: "₹500 / 100g",
+            query: "plum+cleansing+balm+makeup+remover",
+            effectiveDiff: "~4.5× Cheaper per unit",
+            edge: "Plant-derived balm that dissolves waterproof makeup and rinses clean with zero residue."
+          },
+          {
+            tier: "Ceramide Butter Pick",
+            name: "Earth Rhythm Pro-Ceramide Cleansing Balm",
+            size: "100 g",
+            price: 520,
+            unitRate: "₹520 / 100g",
+            query: "earth+rhythm+cleansing+balm",
+            effectiveDiff: "~4.3× Cheaper per gram",
+            edge: "Zero polyethylene plastic waxes. Solid plant lipid formulation enriched with Ceramides."
+          },
+          {
+            tier: "Water-Rinsing Oil Alternative",
+            name: "Deconstruct Calming Cleansing Balm",
+            size: "50 g",
+            price: 349,
+            unitRate: "₹698 / 100g",
+            query: "deconstruct+cleansing+balm",
+            effectiveDiff: "~3.2× Cheaper per gram",
+            edge: "Bisabolol-infused melt-away balm designed specifically to protect irritated skin."
+          }
+        ]
+      },
+      {
+        id: "micellar",
+        tags: ["cleanser", "cleansers", "micellar water", "bioderma", "makeup water", "sensibio"],
+        category: "Face Cleansers",
+        brandName: "Bioderma Sensibio H2O Micellar Water",
+        brandSize: "250 ml",
+        brandPrice: 990,
+        brandUnitRate: "₹396 / 100ml",
+        rawCost: 20,
+        bom: [
+          { item: "PEG-6 Caprylic/Capric Micellar Surfactant", cost: "₹8" },
+          { item: "Mannitol & Xylitol Sugars", cost: "₹2" },
+          { item: "Pure Demineralized Water (98%)", cost: "₹2" },
+          { item: "Transparent 250ml Bottle & Flip Cap", cost: "₹8" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Unbeatable Volume",
+            name: "Garnier SkinActive Micellar Water (Pink)",
+            size: "400 ml",
+            price: 249,
+            unitRate: "₹62 / 100ml",
+            query: "garnier+micellar+cleansing+water+pink",
+            effectiveDiff: "~6.4× Cheaper per ml",
+            edge: "Provides 400ml of identical micellar fluid for ₹62 per 100ml compared to ₹396."
+          },
+          {
+            tier: "Glycolic Glow Dupe",
+            name: "Simple Kind to Skin Micellar Water",
+            size: "200 ml",
+            price: 345,
+            unitRate: "₹172 / 100ml",
+            query: "simple+micellar+cleansing+water",
+            effectiveDiff: "~2.3× Cheaper per ml",
+            edge: "Contains zero perfume, alcohol, or harsh chemicals. Pure triple-purified water base."
+          },
+          {
+            tier: "Hydrating Hyaluronic Pick",
+            name: "Dermafique Micellar Water Cleanser",
+            size: "200 ml",
+            price: 299,
+            unitRate: "₹149 / 100ml",
+            query: "dermafique+micellar+water",
+            effectiveDiff: "~2.6× Cheaper per ml",
+            edge: "Infused with cellular repair boosters and non-ionic micellar magnets for swift removal."
+          }
+        ]
+      },
+
+      // Chemical Toners (15-17)
+      {
+        id: "glycolic",
+        tags: ["toner", "toners", "glycolic", "glycolic acid", "glycolic toner", "aha", "exfoliator"],
+        category: "Chemical Toners",
+        brandName: "The Ordinary Glycolic Acid 7% Toning Solution",
+        brandSize: "240 ml",
+        brandPrice: 950,
+        brandUnitRate: "₹395 / 100ml",
+        rawCost: 35,
+        bom: [
+          { item: "7% Pure Glycolic Acid Active", cost: "₹15" },
+          { item: "Amino Acid Complex & Aloe Base", cost: "₹7" },
+          { item: "Water Solvent", cost: "₹2" },
+          { item: "240ml Clear Bottle & Spout", cost: "₹11" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Buffered Bamboo Exfoliant",
+            name: "Minimalist 8% Glycolic Acid Liquid Exfoliant",
+            size: "150 ml",
+            price: 499,
+            unitRate: "₹332 / 100ml",
+            query: "minimalist+8+glycolic+acid+liquid",
+            effectiveDiff: "~1.2× Cheaper (Buffered Base)",
+            edge: "Buffered with natural bamboo water for safer skin penetration and reduced tingling."
+          },
+          {
+            tier: "Pharmacy Hyperpigmentation Cream",
+            name: "Glyco-6 Glycolic Acid 6% Cream",
+            size: "30 g",
+            price: 220,
+            unitRate: "₹733 / 100g",
+            query: "glyco+6+glycolic+acid+cream",
+            effectiveDiff: "High Concentration Spot Healer",
+            edge: "Classic pharmaceutical 6% glycolic treatment prescribed to clear deep pigmentation."
+          },
+          {
+            tier: "Mandelic Sensitive Toner",
+            name: "Dot & Key 5% AHA Toning Solution",
+            size: "150 ml",
+            price: 425,
+            unitRate: "₹283 / 100ml",
+            query: "dot+and+key+aha+toner",
+            effectiveDiff: "~1.4× Cheaper per ml",
+            edge: "Gentle formulation with willow bark and lactic acid for easily irritated skin."
+          }
+        ]
+      },
+      {
+        id: "bhaliquid",
+        tags: ["toner", "toners", "bha liquid", "paulas choice", "exfoliator", "blackhead liquid", "salicylic toner"],
+        category: "Chemical Toners",
+        brandName: "Paula's Choice 2% BHA Liquid Exfoliant",
+        brandSize: "118 ml",
+        brandPrice: 2700,
+        brandUnitRate: "₹2,288 / 100ml",
+        rawCost: 40,
+        bom: [
+          { item: "2% Salicylic Acid USP Active", cost: "₹9" },
+          { item: "Methylpropanediol & Butylene Glycol Penetration Base", cost: "₹16" },
+          { item: "Green Tea Extract Traces", cost: "₹3" },
+          { item: "118ml Chemical-Resistant Bottle", cost: "₹12" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Exact Formulation Twin",
+            name: "Minimalist 2% Salicylic Acid Exfoliator",
+            size: "100 ml",
+            price: 599,
+            unitRate: "₹599 / 100ml",
+            query: "minimalist+2+salicylic+acid+exfoliator",
+            effectiveDiff: "~3.8× Cheaper per ml",
+            edge: "Delivers identical 2% salicylic acid in the exact same penetration fluid for ₹599 vs ₹2,288."
+          },
+          {
+            tier: "Tea Tree Clarifying Toner",
+            name: "Plum 2% Encapsulated Salicylic Toner",
+            size: "100 ml",
+            price: 420,
+            unitRate: "₹420 / 100ml",
+            query: "plum+salicylic+acid+toner",
+            effectiveDiff: "~5.4× Cheaper per ml",
+            edge: "Uses slow-release encapsulated salicylic acid combined with oil-clearing green tea."
+          },
+          {
+            tier: "Overnight Blackhead Solution",
+            name: "The Derma Co 2% BHA Pore Shrinking Toner",
+            size: "100 ml",
+            price: 359,
+            unitRate: "₹359 / 100ml",
+            query: "derma+co+2+bha+toner",
+            effectiveDiff: "~6.3× Cheaper per ml",
+            edge: "Alcohol-free unclogging formula with Witch Hazel and Willow Bark extract."
+          }
+        ]
+      },
+      {
+        id: "milkytoner",
+        tags: ["toner", "toners", "laneige", "cream skin", "milky toner", "essence toner"],
+        category: "Chemical Toners",
+        brandName: "Laneige Cream Skin Cerapeptide Refiner",
+        brandSize: "170 ml",
+        brandPrice: 2100,
+        brandUnitRate: "₹1,235 / 100ml",
+        rawCost: 45,
+        bom: [
+          { item: "Meadowfoam Seed Oil & Ceramide Micro-Emulsion", cost: "₹19" },
+          { item: "Glycerin & Butylene Glycol", cost: "₹9" },
+          { item: "Purified Water Carrier", cost: "₹3" },
+          { item: "Frosted Heavy Cylindrical Bottle", cost: "₹14" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: 500ml Giant Mochi Milk",
+            name: "TonyMoly Wonder Ceramide Mochi Toner",
+            size: "500 ml",
+            price: 750,
+            unitRate: "₹150 / 100ml",
+            query: "tonymoly+wonder+ceramide+mochi+toner",
+            effectiveDiff: "~8.2× Cheaper per ml",
+            edge: "Giant 500ml container at ₹150 per 100ml vs ₹1,235 per 100ml (over 8× cheaper)."
+          },
+          {
+            tier: "Rice Water Barrier Dupe",
+            name: "Thank You Farmer Rice Pure Essential Toner",
+            size: "200 ml",
+            price: 1350,
+            unitRate: "₹675 / 100ml",
+            query: "thank+you+farmer+rice+toner",
+            effectiveDiff: "~1.8× Cheaper per ml",
+            edge: "Botanical Korean rice extract suspension that deeply hydrates dull, parched skin."
+          },
+          {
+            tier: "Oat Milk Calming Toner",
+            name: "Plum 3% Oat Milk & Ceramide Milky Toner",
+            size: "150 ml",
+            price: 395,
+            unitRate: "₹263 / 100ml",
+            query: "plum+oat+milk+ceramide+toner",
+            effectiveDiff: "~4.7× Cheaper per ml",
+            edge: "Cream-in-toner emulsion made with oat milk to relieve redness and barrier tightness."
+          }
+        ]
+      },
+
+      // Sunscreens (18-19)
+      {
+        id: "dewysun",
+        tags: ["sunscreen", "sunscreens", "dewy sunscreen", "spf 50", "aqualogica", "sun block"],
+        category: "Sunscreens",
+        brandName: "Aqualogica Radiance+ Dewy Sunscreen SPF 50",
+        brandSize: "50 g",
+        brandPrice: 499,
+        brandUnitRate: "₹998 / 100g",
+        rawCost: 35,
+        bom: [
+          { item: "Avobenzone, Octinoxate UV Chemical Filters", cost: "₹16" },
+          { item: "Water Carrier & Titanium Dioxide Traces", cost: "₹5" },
+          { item: "Niacinamide & Preservatives", cost: "₹4" },
+          { item: "Plastic Squeeze Pump Tube", cost: "₹10" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Photostable In-Vivo Tested",
+            name: "Minimalist Light Fluid SPF 50 PA++++",
+            size: "50 g",
+            price: 474,
+            unitRate: "₹948 / 100g",
+            query: "minimalist+light+fluid+spf+50",
+            effectiveDiff: "European Lab Certified",
+            edge: "Certified European in-vivo lab tested with modern photostable UV filters and zero cast."
+          },
+          {
+            tier: "1% Hyaluronic Aqua Gel",
+            name: "The Derma Co 1% Hyaluronic Sunscreen Aqua Gel",
+            size: "50 g",
+            price: 424,
+            unitRate: "₹848 / 100g",
+            query: "derma+co+1+hyaluronic+sunscreen+aqua+gel",
+            effectiveDiff: "~1.2× Cheaper per gram",
+            edge: "Ultralight water-like texture formulated with Vitamin E for grease-free protection."
+          },
+          {
+            tier: "Watermelon Dew Pick",
+            name: "Dot & Key Watermelon Cooling SPF 50 Sunscreen",
+            size: "50 g",
+            price: 445,
+            unitRate: "₹890 / 100g",
+            query: "dot+and+key+watermelon+sunscreen+spf+50",
+            effectiveDiff: "~1.1× Cheaper per gram",
+            edge: "Cooling fluid infused with fruit extract and hyaluronic acid that absorbs in 10 seconds."
+          }
+        ]
+      },
+      {
+        id: "mineralsun",
+        tags: ["sunscreen", "sunscreens", "mineral sunscreen", "zinc sunscreen", "la shield", "matte sunscreen"],
+        category: "Sunscreens",
+        brandName: "La Shield Fisico Matte Mineral SPF 50+",
+        brandSize: "50 g",
+        brandPrice: 790,
+        brandUnitRate: "₹1,580 / 100g",
+        rawCost: 45,
+        bom: [
+          { item: "Micronized Zinc Oxide Mineral Active (25%)", cost: "₹24" },
+          { item: "Cyclopentasiloxane Silicone Matte Base", cost: "₹10" },
+          { item: "Dispersant & Silica", cost: "₹4" },
+          { item: "50g Opaque Sun Tube", cost: "₹7" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Hospital Grade Gel",
+            name: "Blynds AC SPF 50+ / Zincote Gel",
+            size: "50 g",
+            price: 480,
+            unitRate: "₹960 / 100g",
+            query: "blynds+ac+spf+50+sunscreen",
+            effectiveDiff: "~1.6× Cheaper per gram",
+            edge: "Hospital-grade pure physical barrier with superior sweat resistance for ₹960/100g vs ₹1,580."
+          },
+          {
+            tier: "Zero White Cast Physical",
+            name: "Re'equil Sheer Zinc Tinted Mineral Sunscreen",
+            size: "50 g",
+            price: 695,
+            unitRate: "₹1,390 / 100g",
+            query: "reequil+sheer+zinc+tinted+sunscreen",
+            effectiveDiff: "Universal Tinted Base",
+            edge: "100% mineral sunscreen with a universal sheer tint that blurs skin redness instantly."
+          },
+          {
+            tier: "Clinical Matte Sun Stick",
+            name: "The Derma Co Pure Zinc Matte Sunscreen Gel",
+            size: "50 g",
+            price: 590,
+            unitRate: "₹1,180 / 100g",
+            query: "derma+co+pure+zinc+matte+sunscreen",
+            effectiveDiff: "~1.3× Cheaper per gram",
+            edge: "Formulated with 25% Zinc Oxide and titanium dioxide with an oil-controlling matte primer finish."
+          }
+        ]
+      },
+
+      // Supplements (20-22)
+      {
+        id: "glutathione",
+        tags: ["supplement", "supplements", "glutathione", "glow tablets", "chicnutrix", "skin whitening"],
+        category: "Glow Supplements",
+        brandName: "Chicnutrix Glow Glutathione + Vitamin C",
+        brandSize: "20 Tabs",
+        brandPrice: 1500,
+        brandUnitRate: "₹75 / tab",
+        rawCost: 60,
+        bom: [
+          { item: "L-Glutathione Bulk Active (500mg)", cost: "₹34" },
+          { item: "Effervescent Sodium Bicarbonate & Citric Acid", cost: "₹8" },
+          { item: "Ascorbic Acid & Sweetener Flavoring", cost: "₹6" },
+          { item: "Moisture-sealed Desiccant Tube", cost: "₹12" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Pure Clinical Capsule",
+            name: "Carbamide Forte L-Glutathione 500mg Pure",
+            size: "60 Tabs",
+            price: 599,
+            unitRate: "₹10 / tab",
+            query: "carbamide+forte+l+glutathione+500mg",
+            effectiveDiff: "~7.5× Cheaper per dose",
+            edge: "Pure 500mg clinical capsules at ₹10 per dose instead of ₹75 per dose with zero fizzy fillers."
+          },
+          {
+            tier: "Pharma Japanese OPITAC",
+            name: "Setu Skin: Renew Japanese OPITAC Glutathione",
+            size: "30 Tabs",
+            price: 899,
+            unitRate: "₹30 / tab",
+            query: "setu+skin+renew+glutathione",
+            effectiveDiff: "~2.5× Cheaper per dose",
+            edge: "Certified Japanese patented OPITAC Glutathione combined with natural Vitamin C."
+          },
+          {
+            tier: "Fizzy Effervescent Twin",
+            name: "Fast&Up Radiance L-Glutathione 500mg",
+            size: "20 Tabs",
+            price: 799,
+            unitRate: "₹40 / tab",
+            query: "fast+and+up+radiance+glutathione",
+            effectiveDiff: "~1.9× Cheaper per dose",
+            edge: "Exact fizzy effervescent drink match to Chicnutrix for half the price."
+          }
+        ]
+      },
+      {
+        id: "collagen",
+        tags: ["supplement", "supplements", "collagen", "marine collagen", "hk vitals", "skin elasticity"],
+        category: "Glow Supplements",
+        brandName: "HK Vitals Skin Radiance Marine Collagen",
+        brandSize: "200 g",
+        brandPrice: 1899,
+        brandUnitRate: "₹949 / 100g",
+        rawCost: 110,
+        bom: [
+          { item: "Hydrolyzed Fish Collagen Bulk Peptides", cost: "₹80" },
+          { item: "Maltodextrin Bulking Filler", cost: "₹9" },
+          { item: "Artificial Flavoring & Preservative", cost: "₹5" },
+          { item: "200g Printed HDPE Plastic Tub", cost: "₹16" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Zero Sugar Pure Peptides",
+            name: "Nutrova Pure Marine Collagen Peptides",
+            size: "300 g",
+            price: 999,
+            unitRate: "₹333 / 100g",
+            query: "pure+hydrolyzed+marine+collagen+peptides",
+            effectiveDiff: "~2.8× Cheaper per 100g",
+            edge: "100% pure marine collagen peptides at ₹333 per 100g vs ₹949, with zero added sugars."
+          },
+          {
+            tier: "Korean Hydrolyzed Low-Dalton",
+            name: "Carbamide Forte Hydrolyzed Marine Collagen 8000mg",
+            size: "200 g",
+            price: 675,
+            unitRate: "₹337 / 100g",
+            query: "carbamide+forte+marine+collagen+peptides",
+            effectiveDiff: "~2.8× Cheaper per 100g",
+            edge: "Contains high-potency Type 1 fish collagen peptides with hyaluronic acid and biotin."
+          },
+          {
+            tier: "Clinical Plant-Based Booster",
+            name: "Wellbeing Nutrition Pure Korean Marine Collagen",
+            size: "200 g",
+            price: 1399,
+            unitRate: "₹700 / 100g",
+            query: "wellbeing+nutrition+korean+marine+collagen",
+            effectiveDiff: "~1.4× Cheaper per 100g",
+            edge: "Ultra-purified 3000 Dalton low molecular weight peptides for maximum skin absorption."
+          }
+        ]
+      },
+      {
+        id: "biotin",
+        tags: ["supplement", "supplements", "biotin", "hair gummies", "power gummies", "hair growth"],
+        category: "Glow Supplements",
+        brandName: "Power Gummies Hair & Nails Vitamin Treats",
+        brandSize: "60 Gummies",
+        brandPrice: 999,
+        brandUnitRate: "₹16.6 / gummy",
+        rawCost: 15,
+        bom: [
+          { item: "Pure Vitamin B7 Biotin (Micro-gram trace)", cost: "₹2" },
+          { item: "Corn Syrup, Pectin & Sugar Gummy Base", cost: "₹5" },
+          { item: "Color & Fruit Flavoring", cost: "₹2" },
+          { item: "60-gummy Plastic Container", cost: "₹6" }
+        ],
+        dupes: [
+          {
+            tier: "#1 Top Pick: Clinical 10,000 mcg Dose",
+            name: "HealthKart Biotin 10,000 mcg Clean Tablets",
+            size: "90 Tabs",
+            price: 349,
+            unitRate: "₹3.8 / tab",
+            query: "healthkart+biotin+10000+mcg",
+            effectiveDiff: "~4.3× Cheaper per dose",
+            edge: "Full therapeutic 10,000 mcg dose for ₹3.8 per day without 4g of sugar per candy gummy."
+          },
+          {
+            tier: "Plant Sesbania Extract",
+            name: "Oziva Plant Based Biotin 10,000 mcg",
+            size: "250 g",
+            price: 549,
+            unitRate: "₹220 / 100g",
+            query: "oziva+plant+based+biotin+powder",
+            effectiveDiff: "Natural Organic Extracts",
+            edge: "Certified organic Sesbania agati leaf extract with pomegranate and amla boosters."
+          },
+          {
+            tier: "Hair Vitamin + DHT Blocker",
+            name: "Man Matters / Be Bodywise Hair Biotin Tablets",
+            size: "60 Tabs",
+            price: 499,
+            unitRate: "₹8.3 / tab",
+            query: "bodywise+hair+health+biotin+tablets",
+            effectiveDiff: "~2.0× Cheaper per dose",
+            edge: "Combines Biotin with zinc, iron, and green tea DHT blockers to prevent follicle fall."
+          }
+        ]
+      }
+    ];
+
+    let activeItem = null;
+    let debounceTimer = null;
+
+    const searchInput = document.getElementById('searchInput');
+    const searchSpinner = document.getElementById('searchSpinner');
+    const suggestionsBox = document.getElementById('suggestionsBox');
+    const clearBtn = document.getElementById('clearBtn');
+    const workspace = document.getElementById('workspace');
+    const emptyHero = document.getElementById('emptyHero');
+    const resultsColumn = document.getElementById('resultsColumn');
+    const revealTriggerBtn = document.getElementById('revealTriggerBtn');
+    const calculatingLoader = document.getElementById('calculatingLoader');
+    const calculationLog = document.getElementById('calculationLog');
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+
+      if (query.length > 0) {
+        clearBtn.classList.remove('hidden');
+        searchSpinner.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+        searchSpinner.classList.add('hidden');
+        suggestionsBox.classList.add('hidden');
+        return;
+      }
+
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        searchSpinner.classList.add('hidden');
+        
+        const matches = database.filter(item => {
+          return item.brandName.toLowerCase().includes(query) ||
+                 item.category.toLowerCase().includes(query) ||
+                 item.tags.some(tag => tag.includes(query));
+        });
+
+        renderSuggestions(matches, query);
+      }, 100);
+    });
+
+    function renderSuggestions(matches, query) {
+      suggestionsBox.innerHTML = '';
+
+      if (matches.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = "p-4 text-center text-xs";
+        emptyDiv.innerHTML = `
+          <p class="font-bold text-gray-700">"${query}" is not in our 22 researched benchmarks yet.</p>
+          <p class="text-[11px] text-gray-500 mt-1">Want us to calculate its ingredient breakdown next?</p>
+          <button type="button" onclick="transferToRequest('${query}')" class="mt-2.5 bg-pink-600 hover:bg-pink-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition cursor-pointer">
+            + Request Research for "${query}"
+          </button>
+        `;
+        suggestionsBox.appendChild(emptyDiv);
+        suggestionsBox.classList.remove('hidden');
+        return;
+      }
+
+      matches.forEach(item => {
+        const row = document.createElement('div');
+        row.className = "px-4 py-3 hover:bg-pink-50 cursor-pointer border-b border-pink-50 last:border-0 flex justify-between items-center transition";
+        row.innerHTML = `
+          <div>
+            <div class="text-xs sm:text-sm font-bold text-gray-800">${item.brandName}</div>
+            <div class="text-[10px] text-pink-500 font-bold uppercase tracking-wider">${item.category} • ${item.brandSize}</div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-black text-gray-900 bg-pink-50 px-2 py-1 rounded-lg">₹${item.brandPrice}</span>
+            <span class="text-[9px] text-gray-400 block">${item.brandUnitRate}</span>
+          </div>
+        `;
+        row.addEventListener('click', () => selectProduct(item));
+        suggestionsBox.appendChild(row);
+      });
+
+      suggestionsBox.classList.remove('hidden');
+    }
+
+    function transferToRequest(term) {
+      suggestionsBox.classList.add('hidden');
+      const reqInput = document.getElementById('requestInput');
+      reqInput.value = term;
+      const communitySection = document.getElementById('communitySection');
+      communitySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      reqInput.focus();
+    }
+
+    function selectProduct(item) {
+      activeItem = item;
+      searchInput.value = item.brandName;
+      suggestionsBox.classList.add('hidden');
+
+      document.getElementById('cardCategory').innerText = item.category;
+      document.getElementById('cardTitle').innerText = item.brandName;
+      document.getElementById('cardPrice').innerText = `₹${item.brandPrice}`;
+      document.getElementById('cardSize').innerText = item.brandSize;
+      document.getElementById('cardUnitRate').innerText = item.brandUnitRate;
+
+      resultsColumn.classList.add('hidden');
+      calculatingLoader.classList.add('hidden');
+      revealTriggerBtn.classList.remove('hidden');
+
+      emptyHero.classList.add('hidden');
+      workspace.classList.remove('hidden');
+
+      workspace.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function runAuditCalculation() {
+      if (!activeItem) return;
+
+      revealTriggerBtn.classList.add('hidden');
+      calculatingLoader.classList.remove('hidden');
+
+      const logs = [
+        "Analyzing active compound percentages from public formulas...",
+        "Querying wholesale bulk commodity ingredient pricing...",
+        "Comparing against 3 clinical dupe formulations...",
+        "Calculating final Idiot Index ratio..."
+      ];
+
+      let logStep = 0;
+      calculationLog.innerText = logs[0];
+
+      const interval = setInterval(() => {
+        logStep++;
+        if (logStep < logs.length) {
+          calculationLog.innerText = logs[logStep];
+        } else {
+          clearInterval(interval);
+          finishAudit();
+        }
+      }, 350);
+    }
+
+    function finishAudit() {
+      calculatingLoader.classList.add('hidden');
+
+      const markup = (activeItem.brandPrice / activeItem.rawCost).toFixed(1);
+      const topDupe = activeItem.dupes[0];
+      const savings = Math.round(((activeItem.brandPrice - topDupe.price) / activeItem.brandPrice) * 100);
+
+      document.getElementById('markupRatio').innerText = `${markup}× MARKUP`;
+      document.getElementById('strikePrice').innerText = `₹${activeItem.brandPrice}`;
+      document.getElementById('strikeUnitRate').innerText = `${activeItem.brandUnitRate} (${activeItem.brandSize})`;
+      document.getElementById('rawCostDisplay').innerText = `₹${activeItem.rawCost}`;
+
+      // BOM items
+      const bomContainer = document.getElementById('bomContainer');
+      bomContainer.innerHTML = '';
+      activeItem.bom.forEach(b => {
+        const row = document.createElement('div');
+        row.className = "flex justify-between items-center bg-white/70 px-3 py-2 rounded-xl border border-red-100";
+        row.innerHTML = `
+          <span class="text-gray-700">${b.item}</span>
+          <span class="font-black text-gray-900">${b.cost}</span>
+        `;
+        bomContainer.appendChild(row);
+      });
+
+      // Populate Tier 1 Hero Card
+      document.getElementById('dupeTitle').innerText = topDupe.name;
+      document.getElementById('dupeSizeBadge').innerText = topDupe.size;
+      document.getElementById('dupeEdge').innerText = topDupe.edge;
+      document.getElementById('dupePrice').innerText = `₹${topDupe.price}`;
+      document.getElementById('dupeUnitRateDisplay').innerText = `${topDupe.unitRate}`;
+      document.getElementById('savingsBadge').innerText = `Save ${savings}%`;
+
+      // Fill Comparison Table with Tier 1
+      document.getElementById('tblBrandSize').innerText = activeItem.brandSize;
+      document.getElementById('tblDupeSize').innerText = topDupe.size;
+      document.getElementById('tblBrandPrice').innerText = `₹${activeItem.brandPrice}`;
+      document.getElementById('tblDupePrice').innerText = `₹${topDupe.price}`;
+      document.getElementById('tblBrandUnitRate').innerText = activeItem.brandUnitRate;
+      document.getElementById('tblDupeUnitRate').innerText = topDupe.unitRate;
+      document.getElementById('tblEffectiveDiff').innerText = topDupe.effectiveDiff;
+
+      const topAmazonUrl = `https://www.amazon.in/s?k=${topDupe.query}&tag=${AFFILIATE_TAG}`;
+      document.getElementById('buyDupeBtn').setAttribute('href', topAmazonUrl);
+
+      // Render Secondary Alternatives (Options 2 & 3)
+      const secondaryContainer = document.getElementById('secondaryDupesContainer');
+      secondaryContainer.innerHTML = '';
+
+      const secondaryDupes = activeItem.dupes.slice(1);
+      secondaryDupes.forEach(dupe => {
+        const dupeUrl = `https://www.amazon.in/s?k=${dupe.query}&tag=${AFFILIATE_TAG}`;
+        const card = document.createElement('div');
+        card.className = "p-3.5 bg-pink-50/40 border border-pink-200/80 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3";
+        card.innerHTML = `
+          <div class="flex-1">
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-black uppercase tracking-wider text-pink-700 bg-pink-100 px-2 py-0.5 rounded-md">${dupe.tier}</span>
+              <span class="text-[10px] font-bold text-gray-500">${dupe.size} • ${dupe.unitRate}</span>
+            </div>
+            <h5 class="text-xs sm:text-sm font-bold text-gray-900 mt-1">${dupe.name}</h5>
+            <p class="text-[11px] text-gray-500 mt-0.5 leading-snug">${dupe.edge}</p>
+          </div>
+          <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-pink-100">
+            <div class="text-left sm:text-right">
+              <span class="text-base font-black text-gray-900 block leading-tight">₹${dupe.price}</span>
+              <span class="text-[9px] text-emerald-600 font-bold block">${dupe.effectiveDiff}</span>
+            </div>
+            <a href="${dupeUrl}" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-black text-white text-xs font-bold px-3.5 py-2 rounded-xl transition active:scale-95 text-center">
+              View on Amazon →
+            </a>
+          </div>
+        `;
+        secondaryContainer.appendChild(card);
+      });
+
+      resultsColumn.classList.remove('hidden');
+      resultsColumn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function simulateSearch(term) {
+      searchInput.value = term;
+      searchInput.dispatchEvent(new Event('input'));
+    }
+
+    function resetToHome() {
+      searchInput.value = '';
+      clearBtn.classList.add('hidden');
+      searchSpinner.classList.add('hidden');
+      suggestionsBox.classList.add('hidden');
+      workspace.classList.add('hidden');
+      emptyHero.classList.remove('hidden');
+      activeItem = null;
+    }
+
+    function toggleLegalModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.toggle('hidden');
+    }
+
+    // Community Requests Logic: Baseline 10
+    const defaultRequests = [
+      { name: "Laneige Lip Sleeping Mask", votes: 10 },
+      { name: "Plum Green Tea Toner", votes: 10 },
+      { name: "Dr. Sheth's Haldi Sunscreen", votes: 10 },
+      { name: "Fixderma Shadow SPF Gel", votes: 10 }
+    ];
+
+    const STORAGE_KEY = 'skincare_requests_v9';
+    let communityRequests = defaultRequests;
+    let stored = localStorage.getItem(STORAGE_KEY);
+
+    if (stored) {
+      try {
+        let parsed = JSON.parse(stored);
+        communityRequests = parsed.filter(item => item.name && item.name.length >= 4);
+        if (communityRequests.length === 0) communityRequests = defaultRequests;
+      } catch (e) {
+        communityRequests = defaultRequests;
+      }
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultRequests));
+    }
+
+    function renderRequests() {
+      const container = document.getElementById('requestList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      communityRequests.forEach((req, index) => {
+        const pill = document.createElement('button');
+        pill.type = "button";
+        pill.onclick = () => upvoteRequest(index);
+        pill.className = "text-[11px] bg-pink-50 hover:bg-pink-100 text-pink-900 border border-pink-200/60 px-2.5 py-1 rounded-lg transition flex items-center gap-1 cursor-pointer";
+        pill.innerHTML = `<span>${req.name}</span> <span class="text-[10px] font-black text-pink-600 bg-white px-1.5 py-0.2 rounded-md">▲ ${req.votes}</span>`;
+        container.appendChild(pill);
+      });
+    }
+
+    function submitRequest(e) {
+      e.preventDefault();
+      const input = document.getElementById('requestInput');
+      const errorMsg = document.getElementById('requestError');
+      const val = input.value.trim();
+
+      const spamBlacklist = ["ok", "test", "asdf", "lol", "nice", "hello", "hi", "product", "aaa", "xyz"];
+      const isBlacklisted = spamBlacklist.includes(val.toLowerCase());
+      const hasLetters = /[a-zA-Z]{3,}/.test(val);
+
+      if (val.length < 4 || isBlacklisted || !hasLetters) {
+        errorMsg.innerText = "Please enter a specific skincare brand or product name (min 4 characters).";
+        errorMsg.classList.remove('hidden');
+        return;
+      }
+
+      errorMsg.classList.add('hidden');
+
+      const existingIndex = communityRequests.findIndex(r => r.name.toLowerCase() === val.toLowerCase());
+      if (existingIndex !== -1) {
+        communityRequests[existingIndex].votes += 1;
+      } else {
+        communityRequests.unshift({ name: val, votes: 10 });
+      }
+
+      communityRequests.sort((a, b) => b.votes - a.votes);
+      if (communityRequests.length > 7) communityRequests.pop();
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(communityRequests));
+      input.value = '';
+      renderRequests();
+    }
+
+    function upvoteRequest(index) {
+      communityRequests[index].votes += 1;
+      communityRequests.sort((a, b) => b.votes - a.votes);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(communityRequests));
+      renderRequests();
+    }
+
+    renderRequests();
+  </script>
+</body>
+</html>
