@@ -3,245 +3,555 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IdiotIndex - Raw Material Markup Tracker</title>
+  <title>IdiotSkincare - Reveal the Markup</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .badge-high { background-color: #fee2e2; color: #991b1b; }
-    .badge-extreme { background-color: #7f1d1d; color: #ffffff; }
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .reveal-btn {
+      animation: pulse-slow 2s infinite ease-in-out;
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 min-h-screen font-sans">
+<body class="bg-gradient-to-b from-pink-50/40 via-white to-gray-50 text-gray-900 min-h-screen font-sans flex flex-col justify-between">
 
-  <!-- Navigation / Header -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
-    <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div>
-        <h1 class="text-2xl font-black tracking-tight text-gray-900">
-          IDIOT<span class="text-red-600">INDEX</span>
-        </h1>
-        <p class="text-xs text-gray-500 font-medium">Spot the markup. Keep your money.</p>
-      </div>
-      <a href="#about" class="text-sm font-semibold text-gray-600 hover:text-black">Why Raw Costs?</a>
+  <!-- Minimal Header -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <div class="cursor-pointer" onclick="resetView()">
+      <h1 class="text-xl font-black tracking-tight text-gray-900">
+        IDIOT<span class="text-pink-600">SKINCARE</span>
+      </h1>
+      <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Raw Markup Teardowns</p>
     </div>
+    <span class="text-xs font-semibold text-gray-400 bg-gray-100 px-3 py-1 rounded-full">22 Products Indexed</span>
   </header>
 
-  <!-- Hero Section -->
-  <section class="max-w-3xl mx-auto px-4 pt-10 pb-6 text-center">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-      Stop paying 30× for brand hype.
-    </h2>
-    <p class="mt-2 text-gray-600 text-sm sm:text-base">
-      We calculate the real raw material value inside popular products and show you identical generic alternatives.
-    </p>
-
-    <!-- Search Input -->
-    <div class="mt-6 flex gap-2">
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search product (e.g., iPhone cable, Vitamin C, plain tee)..."
-        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 shadow-sm"
-      />
+  <!-- Central Interaction Hub -->
+  <main class="w-full max-w-xl mx-auto px-4 py-8 flex flex-col items-center">
+    
+    <!-- Hero Title -->
+    <div id="heroText" class="text-center mb-6 transition-all duration-300">
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-900">
+        Check Any Skincare Product
+      </h2>
+      <p class="text-sm text-gray-500 mt-2">
+        Type an active, serum, or item to see what's actually inside the bottle.
+      </p>
     </div>
 
-    <!-- Category Filters -->
-    <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs font-semibold">
-      <button onclick="filterCategory('All')" class="filter-btn px-3 py-1.5 rounded-full bg-black text-white">All</button>
-      <button onclick="filterCategory('Tech')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">📱 Tech</button>
-      <button onclick="filterCategory('Skincare')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">🧴 Skincare</button>
-      <button onclick="filterCategory('Basics')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">👕 Basics</button>
-      <button onclick="filterCategory('Supplements')" class="filter-btn px-3 py-1.5 rounded-full bg-gray-200 text-gray-700">💊 Supplements</button>
-    </div>
-  </section>
+    <!-- Search Bar + Dropdown Container -->
+    <div class="w-full relative">
+      <div class="relative flex items-center">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Try typing 'salicylic acid serum' or 'retinol'..."
+          autocomplete="off"
+          class="w-full px-5 py-4 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 shadow-sm bg-white text-gray-800 placeholder-gray-400 transition"
+        />
+        <button 
+          id="clearBtn" 
+          onclick="resetView()" 
+          class="hidden absolute right-4 text-gray-400 hover:text-gray-600 text-sm font-bold bg-gray-100 rounded-full w-6 h-6 flex items-center justify-center">
+          ✕
+        </button>
+      </div>
 
-  <!-- Product List Grid -->
-  <main class="max-w-5xl mx-auto px-4 py-6">
-    <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Injected via JavaScript -->
+      <!-- Auto-suggest Dropdown -->
+      <div 
+        id="suggestionsBox" 
+        class="hidden absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden z-30 max-h-72 overflow-y-auto">
+        <!-- Results injected via JS -->
+      </div>
     </div>
+
+    <!-- Quick Inspiration Chips -->
+    <div id="quickChips" class="flex flex-wrap gap-2 mt-3 justify-center text-xs">
+      <span class="text-gray-400 self-center">Popular:</span>
+      <button onclick="simulateSearch('salicylic acid serum')" class="bg-gray-100 hover:bg-pink-100 text-gray-700 px-3 py-1 rounded-full transition">Salicylic Acid</button>
+      <button onclick="simulateSearch('retinol')" class="bg-gray-100 hover:bg-pink-100 text-gray-700 px-3 py-1 rounded-full transition">Retinol</button>
+      <button onclick="simulateSearch('vitamin c')" class="bg-gray-100 hover:bg-pink-100 text-gray-700 px-3 py-1 rounded-full transition">Vitamin C</button>
+      <button onclick="simulateSearch('snail mucin')" class="bg-gray-100 hover:bg-pink-100 text-gray-700 px-3 py-1 rounded-full transition">Snail Mucin</button>
+    </div>
+
+    <!-- Stage 1: Selected Product Card (Appears after tapping suggestion) -->
+    <div id="selectedProductCard" class="hidden w-full mt-8 bg-white border border-gray-200 rounded-3xl p-6 shadow-md transition-all">
+      <div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-wide">
+        <span id="cardCategory">Category</span>
+        <span class="bg-pink-50 text-pink-600 px-2.5 py-1 rounded-md">#1 Market Best-Seller</span>
+      </div>
+
+      <h3 id="cardTitle" class="text-xl sm:text-2xl font-black text-gray-900 mt-2 leading-snug">Product Name</h3>
+      
+      <div class="flex items-baseline gap-2 mt-3">
+        <span class="text-xs text-gray-400 uppercase font-semibold">Retail Price:</span>
+        <span id="cardPrice" class="text-2xl font-black text-gray-900">₹0</span>
+      </div>
+
+      <!-- The Big Reveal Button -->
+      <button 
+        id="revealTriggerBtn"
+        onclick="revealIdiotIndex()"
+        class="reveal-btn w-full mt-6 py-4 bg-black hover:bg-gray-900 text-white font-extrabold text-sm sm:text-base rounded-2xl shadow-lg transition tracking-wide flex items-center justify-center gap-2">
+        <span>⚡</span> Tap to Reveal Idiot Index Score
+      </button>
+    </div>
+
+    <!-- Stage 2: The Tear-Down & Better Alternative (Hidden until button is clicked) -->
+    <div id="breakdownSection" class="hidden w-full mt-4 space-y-4 transition-all duration-500">
+      
+      <!-- Score & Materials Box -->
+      <div class="bg-red-50/70 border border-red-200 rounded-3xl p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-black text-red-700 uppercase tracking-widest">Calculated Score</span>
+          <span id="markupRatio" class="text-2xl sm:text-3xl font-black text-red-600 bg-white px-3 py-1 rounded-xl shadow-sm border border-red-100">
+            0×
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mt-4 text-center">
+          <div class="bg-white p-3 rounded-2xl border border-red-100">
+            <span class="text-[11px] text-gray-400 block font-semibold">Store Retail</span>
+            <span id="strikePrice" class="text-lg font-black text-gray-800 line-through decoration-red-500">₹0</span>
+          </div>
+          <div class="bg-white p-3 rounded-2xl border border-red-100">
+            <span class="text-[11px] text-gray-400 block font-semibold">Raw Ingredient Value</span>
+            <span id="rawCostDisplay" class="text-lg font-black text-green-600">₹0</span>
+          </div>
+        </div>
+
+        <div class="mt-4 bg-white/80 p-3.5 rounded-2xl border border-red-100 text-xs text-gray-600">
+          <span class="font-bold text-gray-800 block mb-1">What's actually inside the bottle:</span>
+          <p id="materialsText" class="leading-relaxed italic">Ingredients list</p>
+        </div>
+      </div>
+
+      <!-- The 100% Legit Alternative -->
+      <div class="bg-white border-2 border-green-500/30 rounded-3xl p-6 shadow-sm">
+        <div class="flex justify-between items-center">
+          <span class="text-[11px] font-black tracking-wider text-green-700 uppercase bg-green-50 px-2.5 py-1 rounded-md">100% Legit Alternative</span>
+          <span id="savingsBadge" class="text-xs font-black text-green-700 bg-green-100 px-2.5 py-1 rounded-md">Save 0%</span>
+        </div>
+
+        <h4 id="dupeTitle" class="text-lg font-black text-gray-900 mt-2">Dupe Product Name</h4>
+        <p id="dupeEdge" class="text-xs text-gray-500 mt-1 italic leading-relaxed">Why it is chemically superior</p>
+
+        <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] text-gray-400 block font-bold uppercase">Fair Price</span>
+            <span id="dupePrice" class="text-2xl font-black text-gray-900">₹0</span>
+          </div>
+          <a 
+            id="buyDupeBtn" 
+            href="#" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition flex items-center gap-1.5">
+            Get Dupe on Amazon →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
   </main>
 
-  <!-- Transparency Footer -->
-  <footer id="about" class="bg-white border-t border-gray-200 mt-12 py-8">
-    <div class="max-w-3xl mx-auto px-4 text-center text-xs text-gray-500 space-y-3">
-      <p class="font-bold text-gray-700 uppercase tracking-wider">How We Earn & Why We Recommend</p>
-      <p>
-        If you buy a recommended alternative through our links, we may earn an affiliate commission at zero extra cost to you. We strictly select alternatives with low Idiot Index markups so you get honest value.
-      </p>
-      <p>© 2026 IdiotIndex. Inspired by first-principles thinking.</p>
-    </div>
+  <!-- Clean Footer -->
+  <footer class="w-full text-center py-6 text-xs text-gray-400">
+    IdiotSkincare © 2026 • First-principles pricing for active formulations.
   </footer>
 
   <script>
-    // Product Database (Add as many products as you want here)
-    const products = [
+    const AFFILIATE_TAG = "YOUR_AFFILIATE_TAG_HERE";
+
+    const database = [
       {
-        name: "Apple 1m USB-C Charge Cable",
-        category: "Tech",
-        storePrice: 1900,
-        rawCost: 25,
-        ingredients: "1m copper wire + PVC shield + molded head",
-        altName: "Braided 60W Fast-Charging Type-C Cable",
-        altPrice: 149,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "Spigen Tempered Glass Screen Protector",
-        category: "Tech",
-        storePrice: 999,
-        rawCost: 15,
-        ingredients: "Aluminosilicate sheet glass + oleophobic chemical coat",
-        altName: "High-Strength 9H Edge-to-Edge Glass (2-Pack)",
-        altPrice: 99,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "Kiehl's Hyaluronic Acid Serum (30ml)",
-        category: "Skincare",
-        storePrice: 2600,
-        rawCost: 40,
-        ingredients: "Distilled water + 2% sodium hyaluronate powder + glycerin",
-        altName: "USP-Pure 2% Hyaluronic Acid Serum",
-        altPrice: 349,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "L'Oréal Pure Vitamin C 12% Serum",
-        category: "Skincare",
-        storePrice: 999,
-        rawCost: 30,
-        ingredients: "Water solvent + 3.6g L-Ascorbic powder + preservative",
-        altName: "Direct Pure Vitamin C 10% Active Formulation",
-        altPrice: 299,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "Nike Essential Plain Crew T-Shirt",
-        category: "Basics",
-        storePrice: 1695,
-        rawCost: 65,
-        ingredients: "180 grams 100% carded raw cotton knit",
-        altName: "180 GSM Combed Cotton Export Plain Tee",
-        altPrice: 249,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "Car Clean Microfiber Towel (Single)",
-        category: "Basics",
-        storePrice: 299,
-        rawCost: 18,
-        ingredients: "Polyester / Polyamide blend weave (50g)",
-        altName: "Ultra-Thick 400 GSM Microfiber Cloth (Pack of 3)",
-        altPrice: 129,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "Branded Vitamin D3 60k IU (4 Chewables)",
-        category: "Supplements",
-        storePrice: 380,
-        rawCost: 12,
-        ingredients: "Cholecalciferol powder + edible starch base",
-        altName: "USP Generic Cholecalciferol Capsules (4 Caps)",
-        altPrice: 48,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
-      },
-      {
-        name: "Premium Zinc Chelated 50mg Tablets",
-        category: "Supplements",
-        storePrice: 650,
+        tags: ["salicylic", "salicylic acid", "salicylic acid serum", "acne", "bha", "blackheads"],
+        category: "Face Serums",
+        brandName: "The Derma Co 2% Salicylic Acid Face Serum",
+        brandPrice: 499,
         rawCost: 20,
-        ingredients: "Zinc Gluconate bulk mineral powder + cellulose binder",
-        altName: "Generic Elemental Zinc 50mg (60 Tabs)",
-        altPrice: 110,
-        altLink: "https://amazon.in?tag=YOUR_AFFILIATE_TAG_HERE"
+        materials: "Purified water + 2% salicylic acid powder + solvent & thickener",
+        dupeName: "Sebogel (Pharma Grade Salicylic 2% + Nicotinamide 6%)",
+        dupePrice: 240,
+        searchQuery: "sebogel+salicylic+acid+gel",
+        edge: "Formulated by certified pharmaceutical labs with 6% Niacinamide added. Zero cosmetic fragrance."
+      },
+      {
+        tags: ["hyaluronic", "hyaluronic acid", "hyaluronic serum", "hydration", "dry skin", "loreal"],
+        category: "Face Serums",
+        brandName: "L'Oréal Revitalift 1.5% Hyaluronic Acid Serum",
+        brandPrice: 999,
+        rawCost: 35,
+        materials: "90% purified water + glycerin + 1.5g sodium hyaluronate active",
+        dupeName: "Minimalist 2% Hyaluronic Acid + PGA",
+        dupePrice: 599,
+        searchQuery: "minimalist+hyaluronic+acid+serum",
+        edge: "Includes Polyglutamic Acid (PGA) which holds 4× more hydration than hyaluronic acid alone."
+      },
+      {
+        tags: ["vitamin c", "vitamin c serum", "vit c", "glow", "dark spots", "garnier"],
+        category: "Face Serums",
+        brandName: "Garnier Bright Complete 30x Vitamin C Booster",
+        brandPrice: 699,
+        rawCost: 30,
+        materials: "Water solvent + ethyl ascorbic acid derivative + synthetic fragrance",
+        dupeName: "Foxtale 15% Pure L-Ascorbic Acid Serum",
+        dupePrice: 545,
+        searchQuery: "foxtale+vitamin+c+serum+15",
+        edge: "Uses pure active L-Ascorbic Acid (the true medical gold standard) rather than weak derivatives."
+      },
+      {
+        tags: ["niacinamide", "niacinamide serum", "pores", "oil", "ordinary", "blemish"],
+        category: "Face Serums",
+        brandName: "The Ordinary Niacinamide 10% + Zinc 1%",
+        brandPrice: 650,
+        rawCost: 25,
+        materials: "Demineralized water + 10g raw vitamin B3 powder + zinc PCA",
+        dupeName: "Minimalist 10% Niacinamide + Zinc",
+        dupePrice: 569,
+        searchQuery: "minimalist+niacinamide+10+serum",
+        edge: "Formulated in soothing aloe juice with EUK-134 antioxidant to eliminate purging."
+      },
+      {
+        tags: ["retinol", "retinol serum", "anti aging", "wrinkles", "olay", "night serum"],
+        category: "Face Serums",
+        brandName: "Olay Regenerist Retinol 24 Night Serum",
+        brandPrice: 1799,
+        rawCost: 45,
+        materials: "Dimethicone silicone carrier + retinyl propionate traces + perfume",
+        dupeName: "Minimalist 0.3% Pure Retinol in Squalane",
+        dupePrice: 645,
+        searchQuery: "minimalist+retinol+0.3+in+squalane",
+        edge: "Pure stabilized retinol dissolved in squalane oil for deep repair with zero skin drying."
+      },
+      {
+        tags: ["snail", "snail mucin", "cosrx", "essence", "glass skin", "peptides"],
+        category: "Face Serums",
+        brandName: "COSRX Advanced Snail 96 Mucin Power Essence",
+        brandPrice: 1450,
+        rawCost: 60,
+        materials: "Filtered snail secretion filtrate + sodium polyacrylate binder",
+        dupeName: "Dot & Key / Suganda Bio-Peptide Hydrator",
+        dupePrice: 695,
+        searchQuery: "peptide+hydrating+essence+serum",
+        edge: "Delivers the identical dewy bounce using plant-based fermented bio-peptides and panthenol."
+      },
+      {
+        tags: ["gel moisturizer", "clinique", "water surge", "oily skin cream", "moisture surge"],
+        category: "Moisturizers",
+        brandName: "Clinique Moisture Surge 100H Hydrator",
+        brandPrice: 2700,
+        rawCost: 55,
+        materials: "Purified water + dimethicone slip + glycerin humectant",
+        dupeName: "Pond's Super Light Gel (Oil-Free)",
+        dupePrice: 280,
+        searchQuery: "ponds+super+light+gel+moisturizer",
+        edge: "Virtually identical fast-absorbing cooling water-gel texture with hyaluronic acid."
+      },
+      {
+        tags: ["ceramide", "cerave", "barrier cream", "dry skin", "repair cream"],
+        category: "Moisturizers",
+        brandName: "CeraVe Moisturizing Barrier Cream",
+        brandPrice: 1200,
+        rawCost: 50,
+        materials: "Purified water + petrolatum base + 3 raw ceramide compounds",
+        dupeName: "Atomist / Moist 24 Ceramide Barrier Cream",
+        dupePrice: 380,
+        searchQuery: "ceramide+barrier+repair+cream",
+        edge: "Formulated with medical-grade ceramide complexes for barrier repair at honest pharmacy rates."
+      },
+      {
+        tags: ["cold cream", "nivea", "body cream", "heavy cream"],
+        category: "Moisturizers",
+        brandName: "Nivea Classic Blue Tin Crème",
+        brandPrice: 350,
+        rawCost: 20,
+        materials: "Water + mineral oil + microcrystalline paraffin wax + floral perfume",
+        dupeName: "Pure USP White Soft Petroleum Jelly",
+        dupePrice: 140,
+        searchQuery: "pure+petroleum+jelly+usp",
+        edge: "100% medical-grade occlusive seal without irritating perfume or synthetic alcohols."
+      },
+      {
+        tags: ["eye cream", "dark circles", "kiehls", "caffeine", "under eye"],
+        category: "Moisturizers",
+        brandName: "Kiehl's Creamy Avocado Eye Treatment",
+        brandPrice: 3200,
+        rawCost: 40,
+        materials: "Water + shea butter + trace avocado oil + thickeners",
+        dupeName: "The Derma Co 5% Caffeine Under Eye Serum",
+        dupePrice: 399,
+        searchQuery: "derma+co+5+caffeine+under+eye+serum",
+        edge: "Contains real 5% bioactive caffeine to drain puffiness instead of just cosmetic fatty butter."
+      },
+      {
+        tags: ["gentle cleanser", "cetaphil", "face wash", "sensitive skin", "cleanser"],
+        category: "Cleansers",
+        brandName: "Cetaphil Gentle Skin Cleanser",
+        brandPrice: 550,
+        rawCost: 25,
+        materials: "Demineralized water + cetyl alcohol + mild fatty surfactant",
+        dupeName: "CleanseMe Gentle Skin Cleanser",
+        dupePrice: 280,
+        searchQuery: "cleanseme+gentle+skin+cleanser",
+        edge: "Identical soap-free, non-comedogenic gentle emulsion. Dermatologist certified."
+      },
+      {
+        tags: ["acne wash", "neutrogena", "salicylic wash", "foaming cleanser"],
+        category: "Cleansers",
+        brandName: "Neutrogena Oil-Free Acne Wash",
+        brandPrice: 750,
+        rawCost: 30,
+        materials: "Water + sodium C14 sulfonate + 2% salicylic acid powder + dye",
+        dupeName: "Saslic DS 2% Salicylic Acid Foaming Wash",
+        dupePrice: 410,
+        searchQuery: "saslic+ds+foaming+face+wash",
+        edge: "Clinical foaming wash produced by pharmaceutical giant Cipla with zero pore-clogging dyes."
+      },
+      {
+        tags: ["cleansing balm", "makeup remover", "clinique balm", "cleansing oil"],
+        category: "Cleansers",
+        brandName: "Clinique Take The Day Off Cleansing Balm",
+        brandPrice: 2800,
+        rawCost: 45,
+        materials: "Ethylhexyl palmitate synthetic ester + PEG-20 glyceryl",
+        dupeName: "Plum E-Luminence Cleansing Balm",
+        dupePrice: 450,
+        searchQuery: "cleansing+balm+makeup+remover",
+        edge: "Plant-derived cleansing balm that instantly dissolves heavy makeup and rinses clean."
+      },
+      {
+        tags: ["micellar water", "bioderma", "makeup water", "sensibio"],
+        category: "Cleansers",
+        brandName: "Bioderma Sensibio H2O Micellar Water",
+        brandPrice: 990,
+        rawCost: 20,
+        materials: "98% purified water + PEG-6 caprylic micellar cleansing molecules",
+        dupeName: "Garnier SkinActive Micellar Cleansing Water (Pink)",
+        dupePrice: 249,
+        searchQuery: "garnier+micellar+cleansing+water+pink",
+        edge: "Uses identical gentle micellar technology. Fragrance-free and hypoallergenic."
+      },
+      {
+        tags: ["glycolic", "glycolic acid", "glycolic toner", "aha", "ordinary toner"],
+        category: "Toners",
+        brandName: "The Ordinary Glycolic Acid 7% Toning Solution",
+        brandPrice: 950,
+        rawCost: 35,
+        materials: "Water + 7% raw glycolic acid powder + soothing amino acids",
+        dupeName: "Minimalist 8% Glycolic Acid Liquid Exfoliant",
+        dupePrice: 499,
+        searchQuery: "minimalist+8+glycolic+acid+liquid",
+        edge: "Buffered with natural bamboo water for safer skin penetration and reduced stinging."
+      },
+      {
+        tags: ["bha liquid", "paulas choice", "exfoliator", "blackhead liquid"],
+        category: "Toners",
+        brandName: "Paula's Choice 2% BHA Liquid Exfoliant",
+        brandPrice: 2700,
+        rawCost: 40,
+        materials: "Water + butylene glycol solvent + 2% salicylic acid powder",
+        dupeName: "Minimalist 2% Salicylic Acid Exfoliator",
+        dupePrice: 599,
+        searchQuery: "minimalist+2+salicylic+acid+exfoliator",
+        edge: "Delivers identical 2% salicylic concentration in the exact same penetration fluid for ₹2,100 less."
+      },
+      {
+        tags: ["laneige", "cream skin", "milky toner", "essence toner"],
+        category: "Toners",
+        brandName: "Laneige Cream Skin Cerapeptide Refiner",
+        brandPrice: 2100,
+        rawCost: 45,
+        materials: "Water + meadowfoam seed oil traces + simple ceramide binder",
+        dupeName: "TonyMoly Wonder Ceramide Mochi Toner (500ml)",
+        dupePrice: 750,
+        searchQuery: "tonymoly+wonder+ceramide+mochi+toner",
+        edge: "Giant 500ml bottle of rich ceramide milk providing 3× the volume per rupee."
+      },
+      {
+        tags: ["sunscreen", "dewy sunscreen", "spf 50", "aqualogica"],
+        category: "Sunscreens",
+        brandName: "Aqualogica Radiance+ Dewy Sunscreen SPF 50",
+        brandPrice: 499,
+        rawCost: 35,
+        materials: "Water + titanium dioxide + organic UV chemical filters",
+        dupeName: "Minimalist Light Fluid SPF 50 PA++++",
+        dupePrice: 474,
+        searchQuery: "minimalist+light+fluid+spf+50",
+        edge: "Certified European in-vivo lab tested with photostable filters and zero white cast."
+      },
+      {
+        tags: ["mineral sunscreen", "zinc sunscreen", "la shield", "matte sunscreen"],
+        category: "Sunscreens",
+        brandName: "La Shield Fisico Matte Mineral SPF 50+",
+        brandPrice: 790,
+        rawCost: 45,
+        materials: "Dimethicone silicone base + 25% micronized zinc oxide active",
+        dupeName: "Blynds AC SPF 50+ / Zincote Medical Gel",
+        dupePrice: 480,
+        searchQuery: "blynds+ac+spf+50+sunscreen",
+        edge: "Hospital-grade pure physical barrier with superior sweat and water resistance."
+      },
+      {
+        tags: ["glutathione", "glow tablets", "chicnutrix", "skin whitening", "skin glow"],
+        category: "Glow Supplements",
+        brandName: "Chicnutrix Glow Glutathione + Vitamin C",
+        brandPrice: 1500,
+        rawCost: 60,
+        materials: "L-Glutathione powder + sodium bicarbonate & citric effervescent base",
+        dupeName: "Carbamide Forte L-Glutathione 500mg Pure",
+        dupePrice: 599,
+        searchQuery: "carbamide+forte+l+glutathione+500mg",
+        edge: "Pure 500mg clinical capsules with no fizzy chemical additives or artificial flavorings."
+      },
+      {
+        tags: ["collagen", "marine collagen", "hk vitals", "skin elasticity"],
+        category: "Glow Supplements",
+        brandName: "HK Vitals Skin Radiance Marine Collagen",
+        brandPrice: 1899,
+        rawCost: 110,
+        materials: "Hydrolyzed fish collagen peptide bulk powder + maltodextrin filler",
+        dupeName: "Nutrova Pure Marine Collagen Peptides",
+        dupePrice: 999,
+        searchQuery: "pure+hydrolyzed+marine+collagen+peptides",
+        edge: "100% pure hydrolyzed peptides with zero added sugar or artificial sweeteners."
+      },
+      {
+        tags: ["biotin", "hair gummies", "power gummies", "hair growth"],
+        category: "Glow Supplements",
+        brandName: "Power Gummies Hair & Nails Vitamin Treats",
+        brandPrice: 999,
+        rawCost: 15,
+        materials: "Sugar syrup + pectin gummy base + 30mcg USP biotin powder",
+        dupeName: "HealthKart Biotin 10,000 mcg Clean Tablets",
+        dupePrice: 349,
+        searchQuery: "healthkart+biotin+10000+mcg",
+        edge: "Full therapeutic 10,000 mcg vitamin B7 dose without 4 grams of sticky candy sugars."
       }
     ];
 
-    let currentCategory = 'All';
+    let activeItem = null;
 
-    function renderProducts() {
-      const grid = document.getElementById('productGrid');
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      grid.innerHTML = '';
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsBox = document.getElementById('suggestionsBox');
+    const clearBtn = document.getElementById('clearBtn');
+    const selectedProductCard = document.getElementById('selectedProductCard');
+    const breakdownSection = document.getElementById('breakdownSection');
+    const revealTriggerBtn = document.getElementById('revealTriggerBtn');
 
-      const filtered = products.filter(item => {
-        const matchesCategory = (currentCategory === 'All' || item.category === currentCategory);
-        const matchesSearch = item.name.toLowerCase().includes(query) || item.ingredients.toLowerCase().includes(query);
-        return matchesCategory && matchesSearch;
-      });
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="col-span-2 text-center text-gray-400 py-10">No items found. Try searching another product.</div>`;
+    // Auto-search listener
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      
+      if (query.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+        suggestionsBox.classList.add('hidden');
         return;
       }
 
-      filtered.forEach(item => {
-        const ratio = (item.storePrice / item.rawCost).toFixed(1);
-        const savingsPercent = Math.round(((item.storePrice - item.altPrice) / item.storePrice) * 100);
+      const matches = database.filter(item => {
+        return item.brandName.toLowerCase().includes(query) ||
+               item.tags.some(tag => tag.includes(query)) ||
+               item.category.toLowerCase().includes(query);
+      });
 
-        const card = document.createElement('div');
-        card.className = "bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:shadow-md transition";
-        card.innerHTML = `
+      renderSuggestions(matches);
+    });
+
+    function renderSuggestions(matches) {
+      if (matches.length === 0) {
+        suggestionsBox.innerHTML = `<div class="p-4 text-xs text-gray-400 text-center">No matching beauty product found. Try another search.</div>`;
+        suggestionsBox.classList.remove('hidden');
+        return;
+      }
+
+      suggestionsBox.innerHTML = '';
+      matches.forEach(item => {
+        const row = document.createElement('div');
+        row.className = "px-4 py-3 hover:bg-pink-50 cursor-pointer border-b border-gray-100 last:border-0 flex justify-between items-center transition";
+        row.innerHTML = `
           <div>
-            <div class="flex justify-between items-start">
-              <div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">${item.category}</span>
-                <h3 class="font-bold text-lg text-gray-900 leading-snug">${item.name}</h3>
-              </div>
-              <span class="px-2.5 py-1 text-xs font-extrabold rounded-lg ${ratio >= 30 ? 'badge-extreme' : 'badge-high'}">
-                ${ratio}× IDIOT INDEX
-              </span>
-            </div>
-
-            <!-- Price Breakdown Grid -->
-            <div class="grid grid-cols-2 gap-2 mt-4 bg-gray-50 p-3 rounded-xl text-center border border-gray-100">
-              <div>
-                <span class="text-xs text-gray-500 block">Retail Price</span>
-                <span class="text-lg font-black text-gray-900 line-through decoration-red-500">₹${item.storePrice}</span>
-              </div>
-              <div>
-                <span class="text-xs text-gray-500 block">Raw Material Value</span>
-                <span class="text-lg font-black text-green-600">₹${item.rawCost}</span>
-              </div>
-            </div>
-
-            <p class="text-xs text-gray-500 mt-2 italic">
-              <strong>Materials:</strong> ${item.ingredients}
-            </p>
+            <div class="text-xs font-bold text-gray-800">${item.brandName}</div>
+            <div class="text-[11px] text-pink-500 font-semibold uppercase tracking-wider">${item.category}</div>
           </div>
-
-          <!-- Honest Alternative Box -->
-          <div class="mt-5 pt-4 border-t border-gray-100">
-            <div class="flex justify-between items-center mb-2">
-              <span class="text-xs font-bold text-gray-700">Honest Alternative</span>
-              <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Save ${savingsPercent}%</span>
-            </div>
-            <p class="text-sm font-semibold text-gray-800 truncate">${item.altName}</p>
-            <div class="mt-3 flex items-center justify-between">
-              <span class="text-lg font-black text-gray-900">₹${item.altPrice}</span>
-              <a href="${item.altLink}" target="_blank" rel="noopener noreferrer" class="bg-black hover:bg-gray-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition">
-                Buy Alternative →
-              </a>
-            </div>
-          </div>
+          <span class="text-xs font-black text-gray-900">₹${item.brandPrice}</span>
         `;
-        grid.appendChild(card);
+        row.addEventListener('click', () => selectProduct(item));
+        suggestionsBox.appendChild(row);
       });
+
+      suggestionsBox.classList.remove('hidden');
     }
 
-    function filterCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('bg-black', 'text-white');
-        btn.classList.add('bg-gray-200', 'text-gray-700');
-      });
-      event.target.classList.remove('bg-gray-200', 'text-gray-700');
-      event.target.classList.add('bg-black', 'text-white');
-      renderProducts();
+    // When the user taps an auto-suggestion item
+    function selectProduct(item) {
+      activeItem = item;
+      searchInput.value = item.brandName;
+      suggestionsBox.classList.add('hidden');
+
+      // Populate Stage 1 Card
+      document.getElementById('cardCategory').innerText = item.category;
+      document.getElementById('cardTitle').innerText = item.brandName;
+      document.getElementById('cardPrice').innerText = `₹${item.brandPrice}`;
+
+      // Reset & show stage 1, hide stage 2
+      breakdownSection.classList.add('hidden');
+      revealTriggerBtn.classList.remove('hidden');
+      selectedProductCard.classList.remove('hidden');
+
+      // Smooth scroll to card
+      selectedProductCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    document.getElementById('searchInput').addEventListener('input', renderProducts);
-    renderProducts();
+    // When the user taps the reveal button
+    function revealIdiotIndex() {
+      if (!activeItem) return;
+
+      const markup = (activeItem.brandPrice / activeItem.rawCost).toFixed(1);
+      const savings = Math.round(((activeItem.brandPrice - activeItem.dupePrice) / activeItem.brandPrice) * 100);
+
+      // Populate Stage 2 Breakdown
+      document.getElementById('markupRatio').innerText = `${markup}× MARKUP`;
+      document.getElementById('strikePrice').innerText = `₹${activeItem.brandPrice}`;
+      document.getElementById('rawCostDisplay').innerText = `₹${activeItem.rawCost}`;
+      document.getElementById('materialsText').innerText = activeItem.materials;
+
+      // Populate Dupe Details
+      document.getElementById('dupeTitle').innerText = activeItem.dupeName;
+      document.getElementById('dupeEdge').innerText = activeItem.edge;
+      document.getElementById('dupePrice').innerText = `₹${activeItem.dupePrice}`;
+      document.getElementById('savingsBadge').innerText = `Save ${savings}%`;
+
+      // Set Amazon Affiliate Link
+      const amazonUrl = `https://www.amazon.in/s?k=${activeItem.searchQuery}&tag=${AFFILIATE_TAG}`;
+      document.getElementById('buyDupeBtn').setAttribute('href', amazonUrl);
+
+      // Transition views
+      revealTriggerBtn.classList.add('hidden');
+      breakdownSection.classList.remove('hidden');
+
+      // Scroll into view
+      breakdownSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function simulateSearch(term) {
+      searchInput.value = term;
+      searchInput.dispatchEvent(new Event('input'));
+    }
+
+    function resetView() {
+      searchInput.value = '';
+      clearBtn.classList.add('hidden');
+      suggestionsBox.classList.add('hidden');
+      selectedProductCard.classList.add('hidden');
+      breakdownSection.classList.add('hidden');
+      activeItem = null;
+    }
   </script>
 </body>
 </html>
